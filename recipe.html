@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sabores del Mundo</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ec7f13",
+            "background-light": "#f8f7f6",
+            "background-dark": "#221910",
+            "text-light": "#1a1a1a",
+            "text-dark": "#f0f0f0",
+            "subtle-light": "#a1a1aa",
+            "subtle-dark": "#71717a",
+            "border-light": "#e5e7eb",
+            "border-dark": "#374151"
+          },
+          fontFamily: {
+            "display": ["Work Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+        --tw-bg-opacity: 1;
+        background-color: rgb(248 247 246 / var(--tw-bg-opacity));
+    }
+    .dark body {
+        --tw-bg-opacity: 1;
+        background-color: rgb(34 25 16 / var(--tw-bg-opacity));
+    }
+    .checkbox-tick {
+        --checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27%23fff%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e');
+    }
+  </style>
+</head>
+<body class="font-display text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
+<div class="group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-20 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-4">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+<h2 class="text-2xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary" href="#">Inicio</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Recetas</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Categorías</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Blog</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
+</button>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+<div class="flex flex-col gap-8">
+<div class="w-full h-96 rounded-xl bg-cover bg-center shadow-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJFkAWRk7CN-Zt7SiOQOheY_Q-exHphbzwAaXLvBjZPx5Gd5snGb5__JY9suoc85gPYyFy44uNiSs74HZWViwo_8fG5tDWXrjamqNBg413ak6H1IOXYjreiNDnbC0k3MldElwsqHYKNgXRC9P9WDY_v0P3TXc5JwNqGd-UklYmQHUPz3bIOh7Oaj3yyYpisom-qmwhLOd0JedqwfEut0V28jdJ8W6gwersE6lInmXNIeXG0qSEyyYRrxhwD4E9OhDv5-hfAeGR-XI");'></div>
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Paella de Marisco: Un Festín de Sabores del Mar</h1>
+<p class="text-subtle-light dark:text-subtle-dark">Por: Sofía García | 15 de Julio de 2024</p>
+<p class="mt-2 text-text-light dark:text-text-dark">Descubre cómo preparar una auténtica paella de marisco, un plato icónico de la cocina española, lleno de sabor y tradición. Esta receta te guiará paso a paso para crear una paella perfecta, con arroz en su punto, mariscos frescos y un sofrito lleno de aroma.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-1 flex flex-col gap-6">
+<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
+<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Información</h2>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between border-b border-border-light dark:border-border-dark pb-2">
+<span class="font-medium text-subtle-light dark:text-subtle-dark">Tiempo total</span>
+<span class="text-text-light dark:text-text-dark">1h 30m</span>
+</div>
+<div class="flex justify-between border-b border-border-light dark:border-border-dark pb-2">
+<span class="font-medium text-subtle-light dark:text-subtle-dark">Porciones</span>
+<span class="text-text-light dark:text-text-dark">4-6</span>
+</div>
+<div class="flex justify-between border-b border-border-light dark:border-border-dark pb-2">
+<span class="font-medium text-subtle-light dark:text-subtle-dark">Dificultad</span>
+<span class="text-text-light dark:text-text-dark">Media</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-medium text-subtle-light dark:text-subtle-dark">Calificación</span>
+<div class="flex items-center gap-1 text-primary">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<span>4.5/5</span>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
+<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Ingredientes</h2>
+<div class="space-y-3 checkbox-tick">
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">500g de arroz bomba</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">1 kg de mariscos variados</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">1 cebolla grande</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">2 tomates maduros</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">1 pimiento rojo</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">4 dientes de ajo</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">1 sobre de azafrán</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">1.5 litros de caldo de pescado</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">Aceite de oliva virgen extra</span></label>
+<label class="flex items-center gap-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary checked:border-primary checked:bg-[image:var(--checkbox-tick-svg)] focus:ring-0 focus:ring-offset-0" type="checkbox"/><span class="text-text-light dark:text-text-dark">Sal y pimienta</span></label>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col gap-8">
+<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
+<h2 class="text-2xl font-bold mb-6 text-text-light dark:text-text-dark">Pasos a seguir</h2>
+<div class="relative">
+<div class="absolute left-4 top-4 bottom-4 w-0.5 bg-border-light dark:border-border-dark/50"></div>
+<div class="space-y-8">
+<div class="relative flex items-start gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold z-10">1</div>
+<div>
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Prepara el sofrito</h3>
+<p class="text-subtle-light dark:text-subtle-dark">En una paellera grande, calienta aceite de oliva y sofríe la cebolla, el pimiento y el ajo hasta que estén tiernos. Añade el tomate rallado y cocina unos minutos más.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold z-10">2</div>
+<div>
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Cocina el arroz</h3>
+<p class="text-subtle-light dark:text-subtle-dark">Incorpora el arroz y rehoga brevemente. Agrega el azafrán o colorante y mezcla bien.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold z-10">3</div>
+<div>
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Añade los mariscos</h3>
+<p class="text-subtle-light dark:text-subtle-dark">Vierte el caldo de pescado caliente sobre el arroz. Cuando empiece a hervir, distribuye los mariscos por encima.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold z-10">4</div>
+<div>
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Hornea la paella</h3>
+<p class="text-subtle-light dark:text-subtle-dark">Precalienta el horno a 180°C. Introduce la paellera en el horno y cocina durante unos 20 minutos, o hasta que el arroz esté en su punto y el caldo se haya absorbido.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold z-10">5</div>
+<div>
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Sirve y disfruta</h3>
+<p class="text-subtle-light dark:text-subtle-dark">Retira del horno, deja reposar unos minutos y sirve caliente. Puedes decorar con unas rodajas de limón.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
+<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Comentarios y Reseñas</h2>
+<div class="space-y-6">
+<div class="flex flex-col gap-3 border-b border-border-light dark:border-border-dark pb-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDhhHseXkhNCSRhv9XXOFYox6q8QtFR40vKUvFFZK-imuVq0A3Eot5KIeofYXj6Mt3-CHLKnS2iqHBOeZgqWQmeVLdwzEsL5XTJ2qdoY-l1wzZgGhBN4lyklITeiXOvYj1b_rwaz7Th_0Ja1jZLGD7N6ELU99HgrZHFgVRJpdlloPbqfhbN7SUhS29aadg7TrOWAkqGtAgK602_AvP-K-J_swgDjrX1v4KiqS63SPbUP6YFXNfxpny9bb0De53iqXyWKHHyNEXVaQ");'></div>
+<div>
+<p class="font-bold text-text-light dark:text-text-dark">Elena Martínez</p>
+<p class="text-xs text-subtle-light dark:text-subtle-dark">20 de Julio de 2024</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-primary">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+</div>
+<p class="text-text-light dark:text-text-dark">¡Increíble receta! La paella quedó deliciosa y fácil de seguir. Mis invitados quedaron encantados.</p>
+<div class="flex items-center gap-4 text-sm text-subtle-light dark:text-subtle-dark">
+<button class="flex items-center gap-1.5 hover:text-primary transition-colors"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017a2 2 0 01-2-2v-7a2 2 0 012-2h2V6a2 2 0 012-2h2a2 2 0 012 2v2H6a2 2 0 00-2 2v10a2 2 0 002 2h2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 5</button>
+<button class="flex items-center gap-1.5 hover:text-primary transition-colors"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.738 3h4.017a2 2 0 012 2v7a2 2 0 01-2 2h-2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2H18a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 1</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYA-79MlqdYN6c54PXOiF_V0B3PJNsdKFYJdoSyX2Ky1f3m7wAmFGCyxsHtv42HVerZkcb0J2DmDCpag6WVeDgWN5nayuaJiPpZxag8noDBmH1Uvmsjc_6aYeLpe5KBxXeaPOXQQaNZDTQLQXmgYw1A8njA4BeHPyBnjL1-FmZXo9oJM71cDULmsIi6v33m-A3QKrWA6n2FtxMxjBI2AW_r3sd82uctaIdxPSR1pLKRda0ctak53taC3uboW-SrhHndXFjlhZOa-w");'></div>
+<div>
+<p class="font-bold text-text-light dark:text-text-dark">Carlos López</p>
+<p class="text-xs text-subtle-light dark:text-subtle-dark">18 de Julio de 2024</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-primary">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="h-5 w-5 text-border-light dark:text-border-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+</div>
+<p class="text-text-light dark:text-text-dark">Muy buena receta, aunque tuve que ajustar un poco el tiempo de cocción. El sabor es excelente.</p>
+<div class="flex items-center gap-4 text-sm text-subtle-light dark:text-subtle-dark">
+<button class="flex items-center gap-1.5 hover:text-primary transition-colors"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017a2 2 0 01-2-2v-7a2 2 0 012-2h2V6a2 2 0 012-2h2a2 2 0 012 2v2H6a2 2 0 00-2 2v10a2 2 0 002 2h2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 3</button>
+<button class="flex items-center gap-1.5 hover:text-primary transition-colors"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.738 3h4.017a2 2 0 012 2v7a2 2 0 01-2 2h-2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2H18a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 2</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
