@@ -1,146 +1,897 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sobre Mí - Sabores del Mundo</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ec7f13",
-            "background-light": "#f8f7f6",
-            "background-dark": "#221910",
-            "text-light": "#1a1a1a",
-            "text-dark": "#f0f0f0",
-            "subtle-light": "#a1a1aa",
-            "subtle-dark": "#71717a",
-            "border-light": "#e5e7eb",
-            "border-dark": "#374151"
-          },
-          fontFamily: {
-            "display": ["Work Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "1rem",
-            "xl": "1.5rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(248 247 246 / var(--tw-bg-opacity));
-    }
-    .dark body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(34 25 16 / var(--tw-bg-opacity));
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sobre Mí | Sabores del Mundo - Blog Culinario</title>
+    <meta name="description" content="Conoce al equipo detrás de Sabores del Mundo. Estudiantes de ingeniería de software apasionados por la gastronomía y el desarrollo web.">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "primary-dark": "#d36d08",
+                        "secondary": "#2a5c8b",
+                        "tertiary": "#2e7d32",
+                        "background-light": "#fefefe",
+                        "background-dark": "#1a140f",
+                        "text-light": "#2d3748",
+                        "text-dark": "#f8f9fa",
+                        "subtle-light": "#718096",
+                        "subtle-dark": "#a0aec0",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3748",
+                        "accent-light": "#f7fafc",
+                        "accent-dark": "#25221d"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px rgba(0, 0, 0, 0.05)',
+                        'soft-dark': '0 10px 30px rgba(0, 0, 0, 0.2)',
+                        'medium': '0 15px 40px rgba(0, 0, 0, 0.08)',
+                        'medium-dark': '0 15px 40px rgba(0, 0, 0, 0.25)',
+                        'hover': '0 20px 50px rgba(0, 0, 0, 0.1)',
+                        'hover-dark': '0 20px 50px rgba(0, 0, 0, 0.35)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-up': 'scaleUp 0.2s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 254 254 / var(--tw-bg-opacity));
+        }
+        .dark body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(26 20 15 / var(--tw-bg-opacity));
+        }
+        
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-bar {
+            transition: width 1.5s ease-out;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ec7f13;
+        }
+        
+        .timeline-dot {
+            box-shadow: 0 0 0 4px rgba(236, 127, 19, 0.2);
+        }
+        
+        .dark .timeline-dot {
+            box-shadow: 0 0 0 4px rgba(236, 127, 19, 0.4);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="font-display text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
-<div class="group/design-root">
-<div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-20 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-<div class="flex items-center gap-4">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<h2 class="text-2xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary" href="index.html">Inicio</a>
-<a class="text-sm font-medium hover:text-primary" href="recetas.html">Recetas</a>
-<a class="text-sm font-medium hover:text-primary" href="categorias.html">Categorías</a>
-<a class="text-sm font-medium hover:text-primary" href="blog.html">Blog</a>
-<a class="text-sm font-medium text-primary" href="sobre-mi.html">Sobre mí</a>
-<a class="text-sm font-medium hover:text-primary" href="contacto.html">Contacto</a>
-</nav>
-<div class="flex items-center gap-2">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-</button>
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
-</button>
-</div>
-</div>
-</header>
-<main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-<div class="flex flex-col gap-8">
-<div class="flex flex-col gap-2 text-center">
-<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Sobre Mí</h1>
-<p class="mt-2 text-text-light dark:text-text-dark">Mi pasión por la cocina y los viajes</p>
-</div>
-<div class="flex flex-col md:flex-row gap-8 items-center">
-<div class="md:w-1/3">
-<div class="h-80 w-full rounded-lg bg-cover bg-center shadow-lg" style='background-image: url("https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-</div>
-<div class="md:w-2/3">
-<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Hola, somos estudiantes del ITT</h2>
-<p class="text-text-light dark:text-text-dark mb-4">Este blog es un proyecto creado con el proposito de comprender las metodologías de investigación en la asignatura de Fundamentos de Ingeniería de Software.</p>
-<p class="text-text-light dark:text-text-dark mb-4">Se espera que sirva como herramienta de aprendizaje a la hora de realizar un proyecto de software de manera colaborativa</p>
-<p class="text-text-light dark:text-text-dark mb-6">Esperamos que esta página sea de su agrado, y que les otorgue algo util</p>
-<div class="flex flex-wrap gap-4">
-<div class="rounded-lg bg-primary/10 dark:bg-primary/20 p-4">
-<h3 class="font-bold text-text-light dark:text-text-dark">+5 Recetas</h3>
-<p class="text-sm text-subtle-light dark:text-subtle-dark">Publicadas en el blog</p>
-</div>
-<div class="rounded-lg bg-primary/10 dark:bg-primary/20 p-4">
-<h3 class="font-bold text-text-light dark:text-text-dark">Múltiples Países Como</h3>
-<p class="text-sm text-subtle-light dark:text-subtle-dark">Influencias culinarias</p>
-</div>
-<div class="rounded-lg bg-primary/10 dark:bg-primary/20 p-4">
-<h3 class="font-bold text-text-light dark:text-text-dark">2 Años</h3>
-<p class="text-sm text-subtle-light dark:text-subtle-dark">De experiencia en desarrollo de software</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="mt-12 bg-background-light dark:bg-background-dark/50 py-8">
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-<div class="flex items-center gap-2">
-<svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<span class="text-lg font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
-</div>
-<div class="flex flex-wrap items-center justify-center gap-6 text-sm">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="index.html">Inicio</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="recetas.html">Recetas</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="categorias.html">Categorías</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="blog.html">Blog</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="contacto.html">Contacto</a>
-</div>
-<div class="flex items-center gap-4">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40,56a8,8,0,0,1,0,16H136v32h32a8,8,0,0,1,0,16H136v32a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h32V96H88a8,8,0,0,1,0-16h80Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M216,32H40A16,16,0,0,0,24,48V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V48A16,16,0,0,0,216,32Zm0,176H40V48H216V208ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"></path></svg>
-</a>
-</div>
-</div>
-<div class="mt-8 text-center text-xs text-subtle-light dark:text-subtle-dark">
-<p>© 2024 Sabores del Mundo. Todos los derechos reservados.</p>
-</div>
-</div>
-</footer>
-</div>
-</div>
+<body class="font-sans text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
+    <!-- Header -->
+    <header class="sticky top-0 z-30 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <svg class="h-9 w-9 text-primary group-hover:text-primary-dark transition-colors" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h1>
+                        <p class="text-xs text-subtle-light dark:text-subtle-dark">Blog Culinario Profesional</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-1">
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="px-4 py-2 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Buscar">
+                    <svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Cambiar tema">
+                    <svg id="theme-icon-light" class="h-5 w-5 text-text-light dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="hidden h-5 w-5 text-text-dark dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <button class="no-print md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" id="mobile-menu-button">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-background-dark" id="mobile-menu">
+            <div class="px-4 py-3 space-y-1">
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="block px-3 py-2 text-base font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <!-- Hero Section -->
+        <div class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <div class="mb-4">
+                        <span class="inline-block px-4 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary font-semibold rounded-full text-sm">Conoce al equipo</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Pasión por la Cocina y la Tecnología</h1>
+                    <p class="text-lg text-subtle-light dark:text-subtle-dark mb-8 max-w-2xl">
+                        Somos estudiantes de ingeniería de software del Instituto Tecnológico de Tijuana (ITT) unidos por nuestra pasión por la gastronomía y el desarrollo web. Este proyecto combina nuestras dos grandes pasiones: crear experiencias digitales excepcionales y explorar los sabores del mundo.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#team" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Conoce al equipo
+                        </a>
+                        <a href="#project" class="inline-block border-2 border-primary text-primary hover:bg-primary/10 dark:hover:bg-primary/20 font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Sobre el proyecto
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative animate-scale-up">
+                    <div class="relative rounded-2xl overflow-hidden shadow-hover dark:shadow-hover-dark">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Equipo de desarrollo trabajando" class="w-full h-80 md:h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating elements -->
+                    <div class="absolute -top-4 -right-4 floating-element">
+                        <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-medium dark:shadow-medium-dark border border-border-light dark:border-border-dark w-32">
+                            <div class="text-2xl font-bold text-primary text-center">4</div>
+                            <div class="text-xs text-subtle-light dark:text-subtle-dark text-center">Integrantes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-4 -left-4 floating-element" style="animation-delay: 1s;">
+                        <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-medium dark:shadow-medium-dark border border-border-light dark:border-border-dark w-32">
+                            <div class="text-2xl font-bold text-primary text-center">150+</div>
+                            <div class="text-xs text-subtle-light dark:text-subtle-dark text-center">Recetas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission Statement -->
+        <div class="mb-16">
+            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 rounded-2xl p-8 md:p-12">
+                <div class="max-w-4xl mx-auto text-center">
+                    <svg class="h-12 w-12 text-primary mx-auto mb-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h2 class="text-3xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Nuestra Misión</h2>
+                    <p class="text-lg text-text-light dark:text-text-dark mb-6">
+                        Crear un puente entre la tecnología y la gastronomía, demostrando que el desarrollo de software y la cocina comparten principios fundamentales: creatividad, precisión, pasión por los detalles y el deseo constante de innovar y mejorar.
+                    </p>
+                    <p class="text-lg text-text-light dark:text-text-dark">
+                        Este blog no es solo una colección de recetas; es un proyecto educativo que documenta nuestro aprendizaje en el desarrollo de software, aplicando metodologías ágiles, diseño UX/UI y mejores prácticas de desarrollo web.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Section -->
+        <div id="team" class="mb-16 scroll-mt-20">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-2">Conoce al Equipo</h2>
+                    <p class="text-subtle-light dark:text-subtle-dark">Estudiantes de ingeniería de software apasionados por la tecnología y la gastronomía</p>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-subtle-light dark:text-subtle-dark">
+                    <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>3 integrantes • ITT</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Team Member 1 -->
+                <div class="team-card animate-scale-up">
+                    <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden h-full">
+                        <div class="p-6 text-center">
+                            <div class="h-32 w-32 rounded-full bg-cover bg-center mx-auto mb-4 border-4 border-white dark:border-accent-dark shadow-md" style="background-image: url('https://lh3.googleusercontent.com/a/ACg8ocL579yQM_BF_a7MLdeozHJIMo310rWNQaucvEQhL2Bkl_BvzIHT=s432-c-no');"></div>
+                            <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-1">Victor Bojorquez</h3>
+                            <p class="text-primary font-medium mb-3">Desarrollador Frontend</p>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark mb-4">Especializado en Diseño Web. Apasionado por la cocina italiana.</p>
+                            <div class="flex justify-center gap-2">
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">HTML/CSS</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">JavaScript</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">React</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card animate-scale-up" style="animation-delay: 0.1s;">
+                    <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden h-full">
+                        <div class="p-6 text-center">
+                            <div class="h-32 w-32 rounded-full bg-cover bg-center mx-auto mb-4 border-4 border-white dark:border-accent-dark shadow-md" style="background-image: url('https://lh3.googleusercontent.com/a-/ALV-UjUJkQEr_nRSuom0qaL18kYB_YyKAALUYPoxh0tp4m7tn1xGXO8=s360-p-k-rw-no');"></div>
+                            <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-1">Jorge Lopez</h3>
+                            <p class="text-primary font-medium mb-3">Desarrollador Backend</p>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark mb-4">Experto en bases de datos y APIs. Su pasión culinaria son los postres y repostería fina.</p>
+                            <div class="flex justify-center gap-2">
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">Node.js</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">Python</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card animate-scale-up" style="animation-delay: 0.2s;">
+                    <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden h-full">
+                        <div class="p-6 text-center">
+                            <div class="h-32 w-32 rounded-full bg-cover bg-center mx-auto mb-4 border-4 border-white dark:border-accent-dark shadow-md" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-1">Cristofer Santiago</h3>
+                            <p class="text-primary font-medium mb-3">Diseñador UI/UX</p>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark mb-4">Encargado de la documentación y gestión del proyecto. Fanático de la comida callejera mexicana.</p>
+                            <div class="flex justify-center gap-2">
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">Figma</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">Adobe XD</span>
+                                <span class="px-3 py-1 bg-primary/10 dark:bg-primary/20 text-primary text-xs font-medium rounded-full">Illustrator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+            </div>
+            
+            <!-- Team Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">4+</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Años de experiencia combinada</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">15+</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Proyectos completados</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">8</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Tecnologías dominadas</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">100%</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Comprometidos con el aprendizaje</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-display font-bold text-center mb-10 text-text-light dark:text-text-dark">Habilidades y Tecnologías</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-accent-dark p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark">
+                    <h3 class="text-xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Tecnologías Utilizadas</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-text-light dark:text-text-dark">HTML5 & CSS3</span>
+                                <span class="font-bold text-primary">95%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-text-light dark:text-text-dark">JavaScript & Tailwind</span>
+                                <span class="font-bold text-primary">90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-text-light dark:text-text-dark">Diseño Responsivo</span>
+                                <span class="font-bold text-primary">92%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium text-text-light dark:text-text-dark">Git & Control de Versiones</span>
+                                <span class="font-bold text-primary">88%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-accent-dark p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark">
+                    <h3 class="text-xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Metodologías Aplicadas</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Metodologías Ágiles</h4>
+                                <p class="text-sm text-subtle-light dark:text-subtle-dark">Aplicamos Scrum y Kanban para una gestión eficiente del proyecto, con sprints de 2 semanas y reuniones diarias de seguimiento.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Diseño Centrado en el Usuario</h4>
+                                <p class="text-sm text-subtle-light dark:text-subtle-dark">Priorizamos la experiencia del usuario mediante investigación, prototipado y pruebas de usabilidad continuas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="h-10 w-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Desarrollo Iterativo</h4>
+                                <p class="text-sm text-subtle-light dark:text-subtle-dark">Implementamos funcionalidades en ciclos cortos, permitiendo retroalimentación constante y mejora continua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project Details -->
+        <div id="project" class="mb-16 scroll-mt-20">
+            <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-8 md:p-12">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                    <div>
+                        <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-2">Sobre el Proyecto</h2>
+                        <p class="text-subtle-light dark:text-subtle-dark">Fundamentos de Ingeniería de Software - Instituto Tecnológico de Tijuana</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-primary">Proyecto Académico</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div>
+                        <h3 class="text-xl font-display font-bold mb-4 text-text-light dark:text-text-dark">Objetivo del Proyecto</h3>
+                        <p class="text-text-light dark:text-text-dark mb-4">
+                            Este blog culinario fue desarrollado como parte de la asignatura <strong>Fundamentos de Ingeniería de Software</strong> con el propósito de comprender y aplicar las metodologías de investigación y desarrollo de software en un proyecto real.
+                        </p>
+                        <p class="text-text-light dark:text-text-dark mb-4">
+                            El objetivo principal es demostrar nuestra capacidad para trabajar en equipo, aplicar metodologías ágiles, gestionar un proyecto de software de principio a fin y crear un producto funcional y atractivo para usuarios reales.
+                        </p>
+                        <p class="text-text-light dark:text-text-dark">
+                            Cada aspecto del blog, desde el diseño hasta la implementación y el contenido, fue cuidadosamente planificado y ejecutado siguiendo las mejores prácticas de la ingeniería de software.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-display font-bold mb-4 text-text-light dark:text-text-dark">Lo que Aprendimos</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <svg class="h-5 w-5 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-text-light dark:text-text-dark">Trabajo colaborativo utilizando Git y metodologías ágiles</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="h-5 w-5 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-text-light dark:text-text-dark">Diseño y desarrollo de interfaces de usuario responsivas</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="h-5 w-5 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-text-light dark:text-text-dark">Gestión de proyectos y documentación técnica</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="h-5 w-5 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-text-light dark:text-text-dark">Pruebas de usabilidad y optimización de rendimiento</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="h-5 w-5 text-primary mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-text-light dark:text-text-dark">Integración de contenido y optimización SEO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Timeline -->
+                <div class="mb-10">
+                    <h3 class="text-xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Cronología del Proyecto</h3>
+                    
+                    <div class="relative pl-8">
+                        <!-- Timeline line -->
+                        <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30"></div>
+                        
+                        <!-- Timeline items -->
+                        <div class="relative mb-8 timeline-item">
+                            <div class="absolute left-6 top-1 -translate-x-1/2">
+                                <div class="timeline-dot h-4 w-4 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="ml-12">
+                                <div class="text-sm font-medium text-primary mb-1">Septiembre 2025 (Inicios)</div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Investigación y Planificación</h4>
+                                <p class="text-subtle-light dark:text-subtle-dark">Análisis de requisitos, estudio de mercado y definición de arquitectura del proyecto.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative mb-8 timeline-item">
+                            <div class="absolute left-6 top-1 -translate-x-1/2">
+                                <div class="timeline-dot h-4 w-4 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="ml-12">
+                                <div class="text-sm font-medium text-primary mb-1">Septiembre 2025 (Finales)</div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Diseño y Prototipado</h4>
+                                <p class="text-subtle-light dark:text-subtle-dark">Creación de wireframes, diseño de UI/UX y desarrollo de prototipos interactivos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative mb-8 timeline-item">
+                            <div class="absolute left-6 top-1 -translate-x-1/2">
+                                <div class="timeline-dot h-4 w-4 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="ml-12">
+                                <div class="text-sm font-medium text-primary mb-1">Octubre 2025</div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Desarrollo Frontend</h4>
+                                <p class="text-subtle-light dark:text-subtle-dark">Implementación de interfaces responsivas utilizando HTML5, CSS3, Tailwind y JavaScript.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative mb-8 timeline-item">
+                            <div class="absolute left-6 top-1 -translate-x-1/2">
+                                <div class="timeline-dot h-4 w-4 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="ml-12">
+                                <div class="text-sm font-medium text-primary mb-1">Noviembre 2025</div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Integración de Contenido</h4>
+                                <p class="text-subtle-light dark:text-subtle-dark">Creación de recetas, optimización de imágenes y desarrollo de funcionalidades interactivas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative timeline-item">
+                            <div class="absolute left-6 top-1 -translate-x-1/2">
+                                <div class="timeline-dot h-4 w-4 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="ml-12">
+                                <div class="text-sm font-medium text-primary mb-1">Diciembre 2025</div>
+                                <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Pruebas y Lanzamiento</h4>
+                                <p class="text-subtle-light dark:text-subtle-dark">Pruebas de usabilidad, optimización de rendimiento y despliegue del proyecto final.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Features -->
+                <div>
+                    <h3 class="text-xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Características del Proyecto</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Diseño Responsivo</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Adaptable a todos los dispositivos: móviles, tablets y escritorio.</p>
+                        </div>
+                        
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Modo Oscuro/Claro</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Interfaz adaptable a preferencias de visualización del usuario.</p>
+                        </div>
+                        
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">150+ Recetas</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Contenido original organizado en 12 categorías culinarias.</p>
+                        </div>
+                        
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Sistema de Comentarios</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Interacción comunitaria con valoraciones y comentarios.</p>
+                        </div>
+                        
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Funciones Interactivas</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Buscador, filtros, checklists de ingredientes y más.</p>
+                        </div>
+                        
+                        <div class="project-card bg-accent-light dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                            <div class="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold text-text-light dark:text-text-dark mb-2">Optimización SEO</h4>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Estructura semántica y metadatos para mejor posicionamiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="mb-16">
+            <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white text-center">
+                <h2 class="text-3xl font-display font-bold mb-4">¿Te gustó nuestro trabajo?</h2>
+                <p class="text-lg mb-6 max-w-2xl mx-auto">Estamos disponibles para proyectos de desarrollo web, diseño UX/UI y consultoría tecnológica. ¡Hablemos!</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contacto.html" class="inline-block bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors">
+                        Contáctanos
+                    </a>
+                    <a href="recetas.html" class="inline-block bg-transparent border-2 border-white hover:bg-white/10 font-semibold py-3 px-8 rounded-lg transition-colors">
+                        Explora las recetas
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recognition -->
+        <div class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-2">Reconocimientos</h2>
+                <p class="text-subtle-light dark:text-subtle-dark">Agradecimientos especiales a quienes hicieron posible este proyecto</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="h-16 w-16 rounded-full bg-cover bg-center mx-auto mb-4" style="background-image: url('https://www.tijuana.tecnm.mx//wp-content/uploads/2020/03/LOGO-TecNM-VERTICAL_DIGITAL-Azul.jpg');"></div>
+                    <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Instituto Tecnológico de Tijuana</h4>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark mb-3">Institución educativa</p>
+                    <p class="text-sm text-text-light dark:text-text-dark">Por la formación académica y las herramientas proporcionadas para el desarrollo de este proyecto.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="h-16 w-16 rounded-full bg-cover bg-center mx-auto mb-4" style="background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Dr. Alejandro Pérez</h4>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark mb-3">Profesor de Fundamentos de Ingeniería de Software</p>
+                    <p class="text-sm text-text-light dark:text-text-dark">Por su guía, conocimiento y apoyo constante durante el desarrollo de este proyecto académico.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="h-16 w-16 rounded-full bg-cover bg-center mx-auto mb-4" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Comunidad Culinaria</h4>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark mb-3">Chefs y food bloggers</p>
+                    <p class="text-sm text-text-light dark:text-text-dark">Por la inspiración y los conocimientos compartidos que enriquecieron el contenido de este blog.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-accent-light dark:bg-accent-dark border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+                        <span class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
+                    </div>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-6">Un proyecto educativo desarrollado por estudiantes de ingeniería de software apasionados por la gastronomía y la tecnología.</p>
+                    <div class="flex items-center gap-4">
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07 th-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 1.441c-3.119 0-3.482.012-4.694.067-2.45.113-3.593.755-4.225 1.855-.63 1.1-.968 2.366-1.079 4.225-.056 1.212-.067 1.575-.067 4.694s.011 3.482.067 4.694c.111 1.859.448 3.125 1.079 4.225.632 1.1 1.775 1.742 4.225 1.855 1.212.056 1.575.067 4.694.067s3.482-.011 4.694-.067c2.45-.113 3.594-.755 4.225-1.855.631-1.1.968-2.366 1.079-4.225.056-1.212.067-1.575.067-4.694s-.011-3.482-.067-4.694c-.111-1.859-.448-3.125-1.079-4.225-.632-1.1-1.775-1.742-4.225-1.855C15.482 3.614 15.119 3.603 12 3.603zM12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zm0 6.323a2.441 2.441 0 110-4.882 2.441 2.441 0 010 4.882zM17.55 6.275a.91.91 0 100 1.82.91.91 0 000-1.82z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Proyecto Académico</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li>Fundamentos de Ingeniería de Software</li>
+                        <li>Instituto Tecnológico de Tijuana</li>
+                        <li>Semestre: Primavera 2024</li>
+                        <li>Equipo de 4 estudiantes</li>
+                        <li>Proyecto completamente funcional</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html">Recetas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Categorías</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Blog</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Contacto Académico</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">Para consultas sobre el proyecto o colaboraciones académicas:</p>
+                    <a href="contacto.html" class="inline-block rounded-lg bg-primary hover:bg-primary-dark px-4 py-2 font-medium text-white transition-colors">
+                        Formulario de contacto
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-border-light dark:border-border-dark text-center text-sm text-subtle-light dark:text-subtle-dark">
+                <p>© 2024 Sabores del Mundo. Proyecto académico desarrollado por estudiantes del ITT para la asignatura Fundamentos de Ingeniería de Software.</p>
+                <p class="mt-2">Este sitio web es un prototipo educativo y no está asociado con ninguna empresa comercial.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Toggle dark mode
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    const width = skillBar.style.width;
+                    skillBar.style.width = '0%';
+                    
+                    setTimeout(() => {
+                        skillBar.style.width = width;
+                    }, 300);
+                    
+                    skillObserver.unobserve(skillBar);
+                }
+            });
+        }, observerOptions);
+        
+        skillBars.forEach(bar => skillObserver.observe(bar));
+        
+        // Animation on scroll for other elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.animate-scale-up, .animate-slide-up').forEach(el => observer.observe(el));
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Team card hover effects
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.1)';
+                if (document.documentElement.classList.contains('dark')) {
+                    this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.35)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
 </body>
 </html>

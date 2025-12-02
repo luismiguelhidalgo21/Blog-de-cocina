@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Recetas | Sabores del Mundo - Colección Completa</title>
+    <meta name="description" content="Explora nuestra colección completa de más de 150 recetas de todo el mundo. Filtra por categoría, dificultad o tiempo de preparación.">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "primary-dark": "#d36d08",
+                        "secondary": "#2a5c8b",
+                        "background-light": "#fefefe",
+                        "background-dark": "#1a140f",
+                        "text-light": "#2d3748",
+                        "text-dark": "#f8f9fa",
+                        "subtle-light": "#718096",
+                        "subtle-dark": "#a0aec0",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3748",
+                        "accent-light": "#f7fafc",
+                        "accent-dark": "#25221d",
+                        "success": "#2e7d32",
+                        "warning": "#ed6c02",
+                        "info": "#0288d1"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px rgba(0, 0, 0, 0.05)',
+                        'soft-dark': '0 10px 30px rgba(0, 0, 0, 0.2)',
+                        'medium': '0 15px 40px rgba(0, 0, 0, 0.08)',
+                        'medium-dark': '0 15px 40px rgba(0, 0, 0, 0.25)',
+                        'hover': '0 20px 50px rgba(0, 0, 0, 0.1)',
+                        'hover-dark': '0 20px 50px rgba(0, 0, 0, 0.35)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-up': 'scaleUp 0.2s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 254 254 / var(--tw-bg-opacity));
+        }
+        .dark body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(26 20 15 / var(--tw-bg-opacity));
+        }
+        
+        .recipe-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .recipe-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .filter-card {
+            transition: all 0.2s ease;
+        }
+        
+        .filter-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(236, 127, 19, 0.15);
+        }
+        
+        .dark .filter-card:hover {
+            box-shadow: 0 10px 25px rgba(236, 127, 19, 0.3);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, #ec7f13 0%, #d36d08 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(236, 127, 19, 0.1) 0%, rgba(42, 92, 139, 0.05) 100%);
+        }
+        
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, rgba(236, 127, 19, 0.15) 0%, rgba(26, 20, 15, 0.8) 100%);
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-easy {
+            background-color: rgba(46, 125, 50, 0.1);
+            color: #2e7d32;
+        }
+        
+        .dark .difficulty-easy {
+            background-color: rgba(46, 125, 50, 0.2);
+            color: #81c784;
+        }
+        
+        .difficulty-medium {
+            background-color: rgba(237, 108, 2, 0.1);
+            color: #ed6c02;
+        }
+        
+        .dark .difficulty-medium {
+            background-color: rgba(237, 108, 2, 0.2);
+            color: #ffb74d;
+        }
+        
+        .difficulty-hard {
+            background-color: rgba(211, 47, 47, 0.1);
+            color: #d32f2f;
+        }
+        
+        .dark .difficulty-hard {
+            background-color: rgba(211, 47, 47, 0.2);
+            color: #ef9a9a;
+        }
+        
+        .category-chip {
+            transition: all 0.2s ease;
+        }
+        
+        .category-chip.active {
+            background-color: #ec7f13;
+            color: white;
+        }
+        
+        .category-chip:hover:not(.active) {
+            background-color: rgba(236, 127, 19, 0.1);
+            color: #ec7f13;
+        }
+        
+        .dark .category-chip:hover:not(.active) {
+            background-color: rgba(236, 127, 19, 0.2);
+        }
+        
+        .time-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #2d3748;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .dark .time-badge {
+            background-color: rgba(45, 55, 72, 0.95);
+            color: #f8f9fa;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        .sticky-filters {
+            position: sticky;
+            top: 5rem;
+            z-index: 10;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        .dark .shimmer {
+            background: linear-gradient(90deg, #2d3748 25%, #4a5568 50%, #2d3748 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body class="font-sans text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="relative">
+                        <svg class="h-10 w-10 text-primary group-hover:text-primary-dark transition-colors transform group-hover:rotate-12 duration-300" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+                        </svg>
+                        <div class="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full pulse-slow"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h1>
+                        <p class="text-xs text-subtle-light dark:text-subtle-dark">Blog Culinario Profesional</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-1">
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="px-4 py-2 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Buscar">
+                    <svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0 1,40,112Z"></path>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Cambiar tema">
+                    <svg id="theme-icon-light" class="h-5 w-5 text-text-light dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="hidden h-5 w-5 text-text-dark dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <button class="md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" id="mobile-menu-button">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-background-dark" id="mobile-menu">
+            <div class="px-4 py-3 space-y-1">
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="block px-3 py-2 text-base font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg" href="recetas.html">Recetas</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden hero-gradient">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+            </div>
+            
+            <div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+                <div class="text-center animate-slide-up">
+                    <div class="mb-6">
+                        <span class="inline-block px-4 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary font-semibold rounded-full text-sm animate-pulse">🍽️ Colección Completa</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-display font-bold mb-6 text-text-light dark:text-text-dark leading-tight">
+                        Explora Nuestra <span class="text-gradient">Biblioteca</span> de Recetas
+                    </h1>
+                    <p class="text-lg md:text-xl text-subtle-light dark:text-subtle-dark mb-8 max-w-3xl mx-auto">
+                        Descubre más de 150 recetas auténticas de todo el mundo. Filtra por categoría, dificultad o tiempo de preparación y encuentra la receta perfecta para cada ocasión.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <div class="relative w-full max-w-md">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                                <svg class="h-5 w-5 text-subtle-light dark:text-subtle-dark" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                                </svg>
+                            </div>
+                            <input id="search-recipes" class="block w-full rounded-xl border-2 border-border-light dark:border-border-dark bg-white dark:bg-background-dark py-3 pl-12 pr-4 text-text-light dark:text-text-dark placeholder:text-subtle-light dark:placeholder:text-subtle-dark focus:border-primary focus:ring-primary" placeholder="Busca recetas, ingredientes o técnicas..." type="search"/>
+                        </div>
+                        <button id="search-button" class="whitespace-nowrap bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                            Buscar Recetas
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap justify-center gap-2 text-sm text-subtle-light dark:text-subtle-dark">
+                        <span>Búsquedas rápidas:</span>
+                        <button class="category-chip px-3 py-1 rounded-full border border-border-light dark:border-border-dark hover:border-primary transition-colors" data-category="postres">Postres</button>
+                        <button class="category-chip px-3 py-1 rounded-full border border-border-light dark:border-border-dark hover:border-primary transition-colors" data-category="vegetariano">Vegetariano</button>
+                        <button class="category-chip px-3 py-1 rounded-full border border-border-light dark:border-border-dark hover:border-primary transition-colors" data-category="rapido">Rápido</button>
+                        <button class="category-chip px-3 py-1 rounded-full border border-border-light dark:border-border-dark hover:border-primary transition-colors" data-category="saludable">Saludable</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters -->
+                <aside class="lg:w-1/4">
+                    <div class="sticky-filters">
+                        <!-- Filters Card -->
+                        <div class="bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-6 mb-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-xl font-display font-bold text-text-light dark:text-text-dark">Filtros</h2>
+                                <button id="reset-filters" class="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+                                    Restablecer
+                                </button>
+                            </div>
+                            
+                            <!-- Category Filter -->
+                            <div class="mb-6">
+                                <h3 class="font-bold text-text-light dark:text-text-dark mb-3">Categorías</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="italiana">
+                                        <span class="text-text-light dark:text-text-dark">Italiana</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">24</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="mexicana">
+                                        <span class="text-text-light dark:text-text-dark">Mexicana</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">18</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="asiatica">
+                                        <span class="text-text-light dark:text-text-dark">Asiática</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">32</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="espanola">
+                                        <span class="text-text-light dark:text-text-dark">Española</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">22</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="vegetariana">
+                                        <span class="text-text-light dark:text-text-dark">Vegetariana</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">36</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="category" value="postres">
+                                        <span class="text-text-light dark:text-text-dark">Postres</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">28</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Difficulty Filter -->
+                            <div class="mb-6">
+                                <h3 class="font-bold text-text-light dark:text-text-dark mb-3">Dificultad</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="difficulty" value="facil">
+                                        <span class="text-text-light dark:text-text-dark">Fácil</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">68</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="difficulty" value="media">
+                                        <span class="text-text-light dark:text-text-dark">Media</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">52</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="difficulty" value="dificil">
+                                        <span class="text-text-light dark:text-text-dark">Difícil</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">30</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Time Filter -->
+                            <div class="mb-6">
+                                <h3 class="font-bold text-text-light dark:text-text-dark mb-3">Tiempo de Preparación</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="time" value="rapido">
+                                        <span class="text-text-light dark:text-text-dark">Rápido (≤ 30 min)</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">42</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="time" value="medio">
+                                        <span class="text-text-light dark:text-text-dark">Medio (30-60 min)</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">78</span>
+                                    </label>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-border-light dark:border-border-dark text-primary focus:ring-primary" data-filter="time" value="largo">
+                                        <span class="text-text-light dark:text-text-dark">Largo (≥ 60 min)</span>
+                                        <span class="ml-auto text-sm text-subtle-light dark:text-subtle-dark">30</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Apply Filters Button -->
+                            <button id="apply-filters" class="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg transition-colors">
+                                Aplicar Filtros
+                            </button>
+                        </div>
+                        
+                        <!-- Quick Stats -->
+                        <div class="bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-6">
+                            <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Estadísticas</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm text-text-light dark:text-text-dark">Total de recetas</span>
+                                        <span class="text-sm font-bold text-primary">150</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm text-text-light dark:text-text-dark">Recetas probadas</span>
+                                        <span class="text-sm font-bold text-primary">142</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm text-text-light dark:text-text-dark">Calificación promedio</span>
+                                        <span class="text-sm font-bold text-primary">4.8/5</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-yellow-400 rounded-full" style="width: 96%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Recipes Grid -->
+                <div class="lg:w-3/4">
+                    <!-- Results Header -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                        <div>
+                            <h2 class="text-2xl font-display font-bold text-text-light dark:text-text-dark">
+                                <span id="results-count">150</span> Recetas Encontradas
+                            </h2>
+                            <p class="text-subtle-light dark:text-subtle-dark">Ordenadas por popularidad</p>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                <select id="sort-recipes" class="appearance-none bg-white dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg py-2 pl-4 pr-10 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary">
+                                    <option value="popularidad">Popularidad</option>
+                                    <option value="nuevas">Más nuevas</option>
+                                    <option value="calificacion">Mejor calificación</option>
+                                    <option value="tiempo">Menor tiempo</option>
+                                    <option value="nombre">Nombre A-Z</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+                                    <svg class="h-5 w-5 text-subtle-light dark:text-subtle-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="hidden md:flex items-center gap-2">
+                                <button id="view-grid" class="p-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary" title="Vista de cuadrícula">
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                                    </svg>
+                                </button>
+                                <button id="view-list" class="p-2 rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary" title="Vista de lista">
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Active Filters -->
+                    <div id="active-filters" class="flex flex-wrap gap-2 mb-6">
+                        <!-- Active filters will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <!-- Recipes Grid -->
+                    <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Recipe cards will be loaded here -->
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div id="loading-state" class="hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Skeleton loaders -->
+                            <div class="recipe-card bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden">
+                                <div class="h-48 shimmer"></div>
+                                <div class="p-5">
+                                    <div class="h-6 w-3/4 mb-3 shimmer rounded"></div>
+                                    <div class="h-4 w-full mb-2 shimmer rounded"></div>
+                                    <div class="h-4 w-2/3 mb-4 shimmer rounded"></div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="h-4 w-16 shimmer rounded"></div>
+                                        <div class="h-4 w-20 shimmer rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Repeat skeleton loaders as needed -->
+                        </div>
+                    </div>
+                    
+                    <!-- No Results State -->
+                    <div id="no-results" class="hidden text-center py-12">
+                        <div class="max-w-md mx-auto">
+                            <div class="h-32 w-32 mx-auto mb-6 text-primary/30">
+                                <svg class="h-full w-full" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v4.5a.5.5 0 001 0V6a1 1 0 112 0v5a7 7 0 11-14 0V9a1 1 0 012 0v2.5a.5.5 0 001 0V4a1 1 0 012 0v4.5a.5.5 0 001 0V3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-display font-bold text-text-light dark:text-text-dark mb-3">No se encontraron recetas</h3>
+                            <p class="text-subtle-light dark:text-subtle-dark mb-6">Intenta ajustar tus filtros o términos de búsqueda para encontrar lo que buscas.</p>
+                            <button id="clear-all-filters" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                Limpiar todos los filtros
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="mt-12">
+                        <nav class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div class="text-sm text-subtle-light dark:text-subtle-dark">
+                                Mostrando <span class="font-semibold text-text-light dark:text-text-dark">1-12</span> de <span class="font-semibold text-text-light dark:text-text-dark">150</span> recetas
+                            </div>
+                            
+                            <div class="flex items-center gap-2">
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </button>
+                                
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg bg-primary text-white font-medium">1</button>
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors">2</button>
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors">3</button>
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors">4</button>
+                                
+                                <span class="px-2 text-subtle-light dark:text-subtle-dark">...</span>
+                                
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors">12</button>
+                                
+                                <button class="h-10 w-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:border-primary dark:hover:border-primary hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Collections -->
+        <section class="py-16 bg-accent-light dark:bg-accent-dark">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-4">Colecciones Destacadas</h2>
+                    <p class="text-lg text-subtle-light dark:text-subtle-dark max-w-3xl mx-auto">Descubre recetas organizadas en colecciones temáticas para diferentes ocasiones y necesidades</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Collection 1 -->
+                    <a href="#" class="filter-card group block bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cena romántica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                <h3 class="text-xl font-display font-bold mb-2">Cenas Románticas</h3>
+                                <p class="text-sm opacity-90">12 recetas • Perfectas para ocasiones especiales</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Collection 2 -->
+                    <a href="#" class="filter-card group block bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Comida saludable" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                <h3 class="text-xl font-display font-bold mb-2">Comida Saludable</h3>
+                                <p class="text-sm opacity-90">24 recetas • Nutritivas y deliciosas</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Collection 3 -->
+                    <a href="#" class="filter-card group block bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fiesta" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                <h3 class="text-xl font-display font-bold mb-2">Para Fiestas</h3>
+                                <p class="text-sm opacity-90">18 recetas • Impresiona a tus invitados</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16">
+            <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-center text-white">
+                    <h2 class="text-3xl font-display font-bold mb-4">¿No encuentras lo que buscas?</h2>
+                    <p class="text-lg mb-6 max-w-2xl mx-auto">Sugiérenos una receta o categoría que te gustaría ver en nuestra colección. ¡Tu opinión nos ayuda a mejorar!</p>
+                    <a href="contacto.html" class="inline-flex items-center justify-center gap-2 bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        Enviar sugerencia
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-accent-light dark:bg-accent-dark border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+                        <span class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
+                    </div>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-6">Descubre recetas auténticas de todo el mundo. Cocina con pasión y comparte momentos inolvidables alrededor de la mesa.</p>
+                    <div class="flex items-center gap-4">
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 1.441c-3.119 0-3.482.012-4.694.067-2.45.113-3.593.755-4.225 1.855-.63 1.1-.968 2.366-1.079 4.225-.056 1.212-.067 1.575-.067 4.694s.011 3.482.067 4.694c.111 1.859.448 3.125 1.079 4.225.632 1.1 1.775 1.742 4.225 1.855 1.212.056 1.575.067 4.694.067s3.482-.011 4.694-.067c2.45-.113 3.594-.755 4.225-1.855.631-1.1.968-2.366 1.079-4.225.056-1.212.067-1.575.067-4.694s-.011-3.482-.067-4.694c-.111-1.859-.448-3.125-1.079-4.225-.632-1.1-1.775-1.742-4.225-1.855C15.482 3.614 15.119 3.603 12 3.603zM12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zm0 6.323a2.441 2.441 0 110-4.882 2.441 2.441 0 010 4.882zM17.55 6.275a.91.91 0 100 1.82.91.91 0 000-1.82z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Recetas</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Españolas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Italianas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Mexicanas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Asiáticas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Vegetarianas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Categorías</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Entradas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Platos principales</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Postres</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Bebidas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Sin gluten</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Contacto</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">¿Tienes preguntas o sugerencias? No dudes en contactarnos.</p>
+                    <a href="contacto.html" class="inline-block px-4 py-2 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-colors">Enviar mensaje</a>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-border-light dark:border-border-dark text-center text-sm text-subtle-light dark:text-subtle-dark">
+                <p>© 2024 Sabores del Mundo. Todos los derechos reservados. | Diseñado con pasión por amantes de la gastronomía.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Recipe Data for JavaScript -->
+    <script>
+        // Sample recipe data - in a real app, this would come from an API
+        const recipes = [
+            {
+                id: 1,
+                title: "Paella de Marisco Tradicional",
+                description: "La auténtica paella valenciana con mariscos frescos, arroz bomba y el característico azafrán.",
+                image: "https://images.unsplash.com/photo-1559314809-2b99056a8c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "espanola",
+                difficulty: "media",
+                time: 90,
+                servings: "4-6",
+                rating: 4.2,
+                reviews: 124,
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Tarta de Limón y Merengue",
+                description: "Un clásico postre con base crujiente, crema de limón y merengue tostado.",
+                image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "postres",
+                difficulty: "media",
+                time: 45,
+                servings: "8",
+                rating: 4.5,
+                reviews: 89,
+                featured: false
+            },
+            {
+                id: 3,
+                title: "Curry de Garbanzos y Espinacas",
+                description: "Un curry cremoso y especiado, perfecto para una comida saludable y reconfortante.",
+                image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "vegetariana",
+                difficulty: "facil",
+                time: 30,
+                servings: "4",
+                rating: 4.8,
+                reviews: 156,
+                featured: false
+            },
+            {
+                id: 4,
+                title: "Pasta Carbonara Auténtica",
+                description: "La clásica pasta carbonara romana con huevo, panceta y queso pecorino.",
+                image: "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "italiana",
+                difficulty: "facil",
+                time: 25,
+                servings: "4",
+                rating: 4.6,
+                reviews: 203,
+                featured: false
+            },
+            {
+                id: 5,
+                title: "Tacos al Pastor",
+                description: "Tacos tradicionales mexicanos con carne marinada, piña y cilantro fresco.",
+                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "mexicana",
+                difficulty: "media",
+                time: 60,
+                servings: "6",
+                rating: 4.7,
+                reviews: 178,
+                featured: false
+            },
+            {
+                id: 6,
+                title: "Sushi de Salmón y Aguacate",
+                description: "Rollos de sushi frescos con salmón, aguacate y arroz para sushi.",
+                image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "asiatica",
+                difficulty: "dificil",
+                time: 75,
+                servings: "4",
+                rating: 4.9,
+                reviews: 94,
+                featured: false
+            },
+            {
+                id: 7,
+                title: "Gazpacho Andaluz",
+                description: "Sopa fría española perfecta para los días calurosos de verano.",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "espanola",
+                difficulty: "facil",
+                time: 20,
+                servings: "4-6",
+                rating: 4.3,
+                reviews: 67,
+                featured: false
+            },
+            {
+                id: 8,
+                title: "Lasagna Bolognesa",
+                description: "Capas de pasta, salsa boloñesa y bechamel gratinadas al horno.",
+                image: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "italiana",
+                difficulty: "media",
+                time: 120,
+                servings: "8",
+                rating: 4.8,
+                reviews: 245,
+                featured: false
+            },
+            {
+                id: 9,
+                title: "Enchiladas Verdes",
+                description: "Tortillas rellenas de pollo bañadas en salsa verde y gratinadas con queso.",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "mexicana",
+                difficulty: "media",
+                time: 50,
+                servings: "6",
+                rating: 4.6,
+                reviews: 132,
+                featured: false
+            },
+            {
+                id: 10,
+                title: "Pad Thai",
+                description: "Fideos de arroz salteados con gambas, tofu, huevo y cacahuetes.",
+                image: "https://images.unsplash.com/photo-1559314809-2b99056a8c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "asiatica",
+                difficulty: "media",
+                time: 35,
+                servings: "4",
+                rating: 4.7,
+                reviews: 189,
+                featured: false
+            },
+            {
+                id: 11,
+                title: "Tortilla Española",
+                description: "La clásica tortilla de patatas española, jugosa por dentro y dorada por fuera.",
+                image: "https://images.unsplash.com/photo-1572448862527-d3c904757de6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "espanola",
+                difficulty: "facil",
+                time: 40,
+                servings: "4-6",
+                rating: 4.4,
+                reviews: 98,
+                featured: false
+            },
+            {
+                id: 12,
+                title: "Tiramisú Casero",
+                description: "Postre italiano de capas de bizcochos de soletilla empapados en café y crema de mascarpone.",
+                image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                category: "postres",
+                difficulty: "media",
+                time: 60,
+                servings: "8",
+                rating: 4.9,
+                reviews: 211,
+                featured: false
+            }
+        ];
+        
+        // Category mapping for display
+        const categoryNames = {
+            "italiana": "Italiana",
+            "mexicana": "Mexicana",
+            "asiatica": "Asiática",
+            "espanola": "Española",
+            "vegetariana": "Vegetariana",
+            "postres": "Postres"
+        };
+        
+        // Difficulty mapping for display
+        const difficultyNames = {
+            "facil": "Fácil",
+            "media": "Media",
+            "dificil": "Difícil"
+        };
+    </script>
+    
+    <script>
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const themeToggle = document.getElementById('theme-toggle');
+        const searchInput = document.getElementById('search-recipes');
+        const searchButton = document.getElementById('search-button');
+        const categoryChips = document.querySelectorAll('.category-chip');
+        const filterCheckboxes = document.querySelectorAll('input[data-filter]');
+        const resetFiltersButton = document.getElementById('reset-filters');
+        const applyFiltersButton = document.getElementById('apply-filters');
+        const sortSelect = document.getElementById('sort-recipes');
+        const viewGridButton = document.getElementById('view-grid');
+        const viewListButton = document.getElementById('view-list');
+        const recipesGrid = document.getElementById('recipes-grid');
+        const loadingState = document.getElementById('loading-state');
+        const noResults = document.getElementById('no-results');
+        const resultsCount = document.getElementById('results-count');
+        const activeFiltersContainer = document.getElementById('active-filters');
+        const clearAllFiltersButton = document.getElementById('clear-all-filters');
+        
+        // State
+        let currentFilters = {
+            search: '',
+            category: [],
+            difficulty: [],
+            time: []
+        };
+        let currentSort = 'popularidad';
+        let currentView = 'grid';
+        
+        // Toggle mobile menu
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Toggle dark mode
+        themeToggle.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Initialize recipes grid
+        function initRecipesGrid() {
+            renderRecipes(recipes);
+        }
+        
+        // Render recipes to the grid
+        function renderRecipes(recipesToRender) {
+            recipesGrid.innerHTML = '';
+            
+            if (recipesToRender.length === 0) {
+                recipesGrid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                resultsCount.textContent = '0';
+                return;
+            }
+            
+            recipesGrid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+            resultsCount.textContent = recipesToRender.length;
+            
+            recipesToRender.forEach(recipe => {
+                const recipeCard = createRecipeCard(recipe);
+                recipesGrid.appendChild(recipeCard);
+            });
+        }
+        
+        // Create a recipe card element
+        function createRecipeCard(recipe) {
+            const card = document.createElement('div');
+            card.className = `recipe-card bg-white dark:bg-accent-dark rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark overflow-hidden animate-scale-up`;
+            
+            // Determine time category for badge color
+            let timeCategory = 'rapido';
+            if (recipe.time > 30 && recipe.time <= 60) timeCategory = 'medio';
+            if (recipe.time > 60) timeCategory = 'largo';
+            
+            // Format time for display
+            const timeDisplay = recipe.time < 60 ? 
+                `${recipe.time} min` : 
+                `${Math.floor(recipe.time / 60)}h ${recipe.time % 60 === 0 ? '' : recipe.time % 60 + 'min'}`;
+            
+            // Create stars HTML
+            const stars = Math.floor(recipe.rating);
+            const hasHalfStar = recipe.rating % 1 >= 0.5;
+            let starsHTML = '';
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= stars) {
+                    starsHTML += `<svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
+                } else if (i === stars + 1 && hasHalfStar) {
+                    starsHTML += `<svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.928 5.93 6.572.957-4.756 4.635 1.123 6.545L10 15.708l-5.867 3.087 1.123-6.545L1.5 7.887l6.572-.957L10 1z" stroke="currentColor" stroke-width="0.5"/></svg>`;
+                } else {
+                    starsHTML += `<svg class="h-4 w-4 text-border-light dark:text-border-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
+                }
+            }
+            
+            // Determine badge color based on time
+            let timeBadgeColor = 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
+            if (timeCategory === 'medio') timeBadgeColor = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
+            if (timeCategory === 'largo') timeBadgeColor = 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
+            
+            card.innerHTML = `
+                <div class="relative h-48 overflow-hidden">
+                    <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    ${recipe.featured ? '<div class="absolute top-3 left-3"><span class="px-2 py-1 bg-primary text-white text-xs font-semibold rounded">Destacada</span></div>' : ''}
+                    <div class="time-badge ${timeBadgeColor}">
+                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                        </svg>
+                        ${timeDisplay}
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-start justify-between mb-2">
+                        <h3 class="font-bold text-lg text-text-light dark:text-text-dark hover:text-primary transition-colors flex-1">
+                            <a href="recipe.html">${recipe.title}</a>
+                        </h3>
+                        <span class="difficulty-badge difficulty-${recipe.difficulty} ml-2">${difficultyNames[recipe.difficulty]}</span>
+                    </div>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark mb-3 line-clamp-2">${recipe.description}</p>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="h-4 w-4 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+                            </svg>
+                            <span class="text-sm text-text-light dark:text-text-dark">${recipe.servings}</span>
+                        </div>
+                        <span class="text-xs px-2 py-1 rounded bg-accent-light dark:bg-background-dark text-subtle-light dark:text-subtle-dark">${categoryNames[recipe.category]}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-1">
+                            ${starsHTML}
+                            <span class="text-xs text-subtle-light dark:text-subtle-dark ml-1">(${recipe.reviews})</span>
+                        </div>
+                        <a href="recipe.html" class="text-primary hover:text-primary-dark text-sm font-medium transition-colors">
+                            Ver receta →
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Filter recipes based on current filters
+        function filterRecipes() {
+            // Show loading state
+            recipesGrid.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            
+            // Simulate API delay
+            setTimeout(() => {
+                let filteredRecipes = [...recipes];
+                
+                // Apply search filter
+                if (currentFilters.search) {
+                    const searchTerm = currentFilters.search.toLowerCase();
+                    filteredRecipes = filteredRecipes.filter(recipe => 
+                        recipe.title.toLowerCase().includes(searchTerm) || 
+                        recipe.description.toLowerCase().includes(searchTerm) ||
+                        categoryNames[recipe.category].toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                // Apply category filters
+                if (currentFilters.category.length > 0) {
+                    filteredRecipes = filteredRecipes.filter(recipe => 
+                        currentFilters.category.includes(recipe.category)
+                    );
+                }
+                
+                // Apply difficulty filters
+                if (currentFilters.difficulty.length > 0) {
+                    filteredRecipes = filteredRecipes.filter(recipe => 
+                        currentFilters.difficulty.includes(recipe.difficulty)
+                    );
+                }
+                
+                // Apply time filters
+                if (currentFilters.time.length > 0) {
+                    filteredRecipes = filteredRecipes.filter(recipe => {
+                        let timeCategory = 'rapido';
+                        if (recipe.time > 30 && recipe.time <= 60) timeCategory = 'medio';
+                        if (recipe.time > 60) timeCategory = 'largo';
+                        
+                        return currentFilters.time.includes(timeCategory);
+                    });
+                }
+                
+                // Sort recipes
+                filteredRecipes = sortRecipes(filteredRecipes, currentSort);
+                
+                // Update active filters display
+                updateActiveFilters();
+                
+                // Render filtered recipes
+                renderRecipes(filteredRecipes);
+                loadingState.classList.add('hidden');
+            }, 500);
+        }
+        
+        // Sort recipes based on selected option
+        function sortRecipes(recipesToSort, sortBy) {
+            const sorted = [...recipesToSort];
+            
+            switch(sortBy) {
+                case 'nuevas':
+                    // Assuming newer recipes have higher IDs
+                    return sorted.sort((a, b) => b.id - a.id);
+                case 'calificacion':
+                    return sorted.sort((a, b) => b.rating - a.rating);
+                case 'tiempo':
+                    return sorted.sort((a, b) => a.time - b.time);
+                case 'nombre':
+                    return sorted.sort((a, b) => a.title.localeCompare(b.title));
+                case 'popularidad':
+                default:
+                    // Sort by reviews (as a proxy for popularity)
+                    return sorted.sort((a, b) => b.reviews - a.reviews);
+            }
+        }
+        
+        // Update active filters display
+        function updateActiveFilters() {
+            activeFiltersContainer.innerHTML = '';
+            
+            // Search filter
+            if (currentFilters.search) {
+                const searchFilter = document.createElement('div');
+                searchFilter.className = 'flex items-center gap-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm';
+                searchFilter.innerHTML = `
+                    <span>Busqueda: "${currentFilters.search}"</span>
+                    <button class="text-primary hover:text-primary-dark" data-filter-type="search">
+                        <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(searchFilter);
+            }
+            
+            // Category filters
+            currentFilters.category.forEach(category => {
+                const categoryFilter = document.createElement('div');
+                categoryFilter.className = 'flex items-center gap-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm';
+                categoryFilter.innerHTML = `
+                    <span>${categoryNames[category]}</span>
+                    <button class="text-primary hover:text-primary-dark" data-filter-type="category" data-filter-value="${category}">
+                        <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(categoryFilter);
+            });
+            
+            // Difficulty filters
+            currentFilters.difficulty.forEach(difficulty => {
+                const difficultyFilter = document.createElement('div');
+                difficultyFilter.className = 'flex items-center gap-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm';
+                difficultyFilter.innerHTML = `
+                    <span>${difficultyNames[difficulty]}</span>
+                    <button class="text-primary hover:text-primary-dark" data-filter-type="difficulty" data-filter-value="${difficulty}">
+                        <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(difficultyFilter);
+            });
+            
+            // Time filters
+            currentFilters.time.forEach(time => {
+                let timeDisplay = 'Rápido (≤ 30 min)';
+                if (time === 'medio') timeDisplay = 'Medio (30-60 min)';
+                if (time === 'largo') timeDisplay = 'Largo (≥ 60 min)';
+                
+                const timeFilter = document.createElement('div');
+                timeFilter.className = 'flex items-center gap-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm';
+                timeFilter.innerHTML = `
+                    <span>${timeDisplay}</span>
+                    <button class="text-primary hover:text-primary-dark" data-filter-type="time" data-filter-value="${time}">
+                        <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                `;
+                activeFiltersContainer.appendChild(timeFilter);
+            });
+            
+            // Add event listeners to remove buttons
+            activeFiltersContainer.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-filter-type');
+                    const filterValue = this.getAttribute('data-filter-value');
+                    
+                    if (filterType === 'search') {
+                        currentFilters.search = '';
+                        searchInput.value = '';
+                    } else if (filterType && filterValue) {
+                        const index = currentFilters[filterType].indexOf(filterValue);
+                        if (index > -1) {
+                            currentFilters[filterType].splice(index, 1);
+                        }
+                        
+                        // Uncheck the corresponding checkbox
+                        const checkbox = document.querySelector(`input[data-filter="${filterType}"][value="${filterValue}"]`);
+                        if (checkbox) {
+                            checkbox.checked = false;
+                        }
+                    }
+                    
+                    filterRecipes();
+                });
+            });
+        }
+        
+        // Event Listeners
+        searchButton.addEventListener('click', function() {
+            currentFilters.search = searchInput.value.trim();
+            filterRecipes();
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                currentFilters.search = searchInput.value.trim();
+                filterRecipes();
+            }
+        });
+        
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                currentFilters.category = [category];
+                
+                // Update checkboxes
+                filterCheckboxes.forEach(checkbox => {
+                    if (checkbox.getAttribute('data-filter') === 'category') {
+                        checkbox.checked = checkbox.value === category;
+                    }
+                });
+                
+                filterRecipes();
+            });
+        });
+        
+        resetFiltersButton.addEventListener('click', function() {
+            // Reset all checkboxes
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Reset search
+            searchInput.value = '';
+            
+            // Reset filters state
+            currentFilters = {
+                search: '',
+                category: [],
+                difficulty: [],
+                time: []
+            };
+            
+            filterRecipes();
+        });
+        
+        applyFiltersButton.addEventListener('click', function() {
+            // Collect filter values from checkboxes
+            currentFilters.category = [];
+            currentFilters.difficulty = [];
+            currentFilters.time = [];
+            
+            filterCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const filterType = checkbox.getAttribute('data-filter');
+                    const filterValue = checkbox.value;
+                    
+                    if (filterType && filterValue) {
+                        currentFilters[filterType].push(filterValue);
+                    }
+                }
+            });
+            
+            filterRecipes();
+        });
+        
+        sortSelect.addEventListener('change', function() {
+            currentSort = this.value;
+            filterRecipes();
+        });
+        
+        viewGridButton.addEventListener('click', function() {
+            currentView = 'grid';
+            viewGridButton.classList.add('bg-primary/10', 'dark:bg-primary/20', 'text-primary');
+            viewGridButton.classList.remove('border', 'border-border-light', 'dark:border-border-dark');
+            viewListButton.classList.remove('bg-primary/10', 'dark:bg-primary/20', 'text-primary');
+            viewListButton.classList.add('border', 'border-border-light', 'dark:border-border-dark');
+            
+            recipesGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+        });
+        
+        viewListButton.addEventListener('click', function() {
+            currentView = 'list';
+            viewListButton.classList.add('bg-primary/10', 'dark:bg-primary/20', 'text-primary');
+            viewListButton.classList.remove('border', 'border-border-light', 'dark:border-border-dark');
+            viewGridButton.classList.remove('bg-primary/10', 'dark:bg-primary/20', 'text-primary');
+            viewGridButton.classList.add('border', 'border-border-light', 'dark:border-border-dark');
+            
+            recipesGrid.className = 'grid grid-cols-1 gap-6';
+        });
+        
+        clearAllFiltersButton.addEventListener('click', function() {
+            resetFiltersButton.click();
+        });
+        
+        // Initialize the page
+        initRecipesGrid();
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.animate-scale-up, .filter-card').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

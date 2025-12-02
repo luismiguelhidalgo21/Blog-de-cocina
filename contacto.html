@@ -1,200 +1,999 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contacto - Sabores del Mundo</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ec7f13",
-            "background-light": "#f8f7f6",
-            "background-dark": "#221910",
-            "text-light": "#1a1a1a",
-            "text-dark": "#f0f0f0",
-            "subtle-light": "#a1a1aa",
-            "subtle-dark": "#71717a",
-            "border-light": "#e5e7eb",
-            "border-dark": "#374151"
-          },
-          fontFamily: {
-            "display": ["Work Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "1rem",
-            "xl": "1.5rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(248 247 246 / var(--tw-bg-opacity));
-    }
-    .dark body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(34 25 16 / var(--tw-bg-opacity));
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contacto | Sabores del Mundo - Blog Culinario</title>
+    <meta name="description" content="Contáctanos para consultas, colaboraciones o sugerencias. Estamos aquí para ayudarte con tus preguntas sobre recetas y proyectos culinarios.">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "primary-dark": "#d36d08",
+                        "secondary": "#2a5c8b",
+                        "tertiary": "#2e7d32",
+                        "background-light": "#fefefe",
+                        "background-dark": "#1a140f",
+                        "text-light": "#2d3748",
+                        "text-dark": "#f8f9fa",
+                        "subtle-light": "#718096",
+                        "subtle-dark": "#a0aec0",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3748",
+                        "accent-light": "#f7fafc",
+                        "accent-dark": "#25221d"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px rgba(0, 0, 0, 0.05)',
+                        'soft-dark': '0 10px 30px rgba(0, 0, 0, 0.2)',
+                        'medium': '0 15px 40px rgba(0, 0, 0, 0.08)',
+                        'medium-dark': '0 15px 40px rgba(0, 0, 0, 0.25)',
+                        'hover': '0 20px 50px rgba(0, 0, 0, 0.1)',
+                        'hover-dark': '0 20px 50px rgba(0, 0, 0, 0.35)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-up': 'scaleUp 0.2s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 254 254 / var(--tw-bg-opacity));
+        }
+        .dark body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(26 20 15 / var(--tw-bg-opacity));
+        }
+        
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(236, 127, 19, 0.2);
+        }
+        
+        .dark .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(236, 127, 19, 0.4);
+        }
+        
+        .success-message {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .map-container {
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 30%);
+            pointer-events: none;
+        }
+        
+        .dark .map-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 30%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="font-display text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
-<div class="group/design-root">
-<div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-20 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-<div class="flex items-center gap-4">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<h2 class="text-2xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary" href="index.html">Inicio</a>
-<a class="text-sm font-medium hover:text-primary" href="recetas.html">Recetas</a>
-<a class="text-sm font-medium hover:text-primary" href="categorias.html">Categorías</a>
-<a class="text-sm font-medium hover:text-primary" href="blog.html">Blog</a>
-<a class="text-sm font-medium hover:text-primary" href="sobre-mi.html">Sobre mí</a>
-<a class="text-sm font-medium text-primary" href="contacto.html">Contacto</a>
-</nav>
-<div class="flex items-center gap-2">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-</button>
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
-</button>
-</div>
-</div>
-</header>
-<main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-<div class="flex flex-col gap-8">
-<div class="flex flex-col gap-2 text-center">
-<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Contacto</h1>
-<p class="mt-2 text-text-light dark:text-text-dark">¿Tienes alguna pregunta o sugerencia? ¡Me encantaría escucharte!</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
-<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Envíame un mensaje</h2>
-<form class="flex flex-col gap-4">
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-text-light dark:text-text-dark" for="name">Nombre</label>
-<input class="rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark px-4 py-2 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary" id="name" placeholder="Tu nombre" type="text"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-text-light dark:text-text-dark" for="email">Email</label>
-<input class="rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark px-4 py-2 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary" id="email" placeholder="tu@email.com" type="email"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-text-light dark:text-text-dark" for="subject">Asunto</label>
-<input class="rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark px-4 py-2 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary" id="subject" placeholder="Asunto del mensaje" type="text"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-sm font-medium text-text-light dark:text-text-dark" for="message">Mensaje</label>
-<textarea class="rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark px-4 py-2 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary" id="message" placeholder="Tu mensaje..." rows="5"></textarea>
-</div>
-<button class="rounded-lg bg-primary px-6 py-3 font-medium text-white hover:bg-opacity-90 transition-colors" type="submit">Enviar mensaje</button>
-</form>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm">
-<h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">Información de contacto</h2>
-<div class="flex flex-col gap-4">
-<div class="flex items-center gap-4">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path></svg>
-</div>
-<div>
-<h3 class="font-bold text-text-light dark:text-text-dark">Horario de atención</h3>
-<p class="text-subtle-light dark:text-subtle-dark">Lunes a Viernes: 9:00 - 18:00</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"></path></svg>
-</div>
-<div>
-<h3 class="font-bold text-text-light dark:text-text-dark">Teléfono</h3>
-<p class="text-subtle-light dark:text-subtle-dark">+34 912 345 678</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"></path></svg>
-</div>
-<div>
-<h3 class="font-bold text-text-light dark:text-text-dark">Email</h3>
-<p class="text-subtle-light dark:text-subtle-dark">hola@saboresdelmundo.com</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
-</div>
-<div>
-<h3 class="font-bold text-text-light dark:text-text-dark">Dirección</h3>
-<p class="text-subtle-light dark:text-subtle-dark">C/ Gastronomía, 123<br>28001 Madrid, España</p>
-</div>
-</div>
-</div>
-<div class="mt-8">
-<h3 class="text-lg font-bold mb-4 text-text-light dark:text-text-dark">Sígueme en redes sociales</h3>
-<div class="flex gap-4">
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40,56a8,8,0,0,1,0,16H136v32h32a8,8,0,0,1,0,16H136v32a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h32V96H88a8,8,0,0,1,0-16h80Z"></path></svg>
-</a>
-<a class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M216,32H40A16,16,0,0,0,24,48V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V48A16,16,0,0,0,216,32Zm0,176H40V48H216V208ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"></path></svg>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="mt-12 bg-background-light dark:bg-background-dark/50 py-8">
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-<div class="flex items-center gap-2">
-<svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<span class="text-lg font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
-</div>
-<div class="flex flex-wrap items-center justify-center gap-6 text-sm">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="index.html">Inicio</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="recetas.html">Recetas</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="categorias.html">Categorías</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="blog.html">Blog</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="contacto.html">Contacto</a>
-</div>
-<div class="flex items-center gap-4">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40,56a8,8,0,0,1,0,16H136v32h32a8,8,0,0,1,0,16H136v32a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h32V96H88a8,8,0,0,1,0-16h80Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M216,32H40A16,16,0,0,0,24,48V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V48A16,16,0,0,0,216,32Zm0,176H40V48H216V208ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"></path></svg>
-</a>
-</div>
-</div>
-<div class="mt-8 text-center text-xs text-subtle-light dark:text-subtle-dark">
-<p>© 2024 Sabores del Mundo. Todos los derechos reservados.</p>
-</div>
-</div>
-</footer>
-</div>
-</div>
+<body class="font-sans text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
+    <!-- Header -->
+    <header class="sticky top-0 z-30 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <svg class="h-9 w-9 text-primary group-hover:text-primary-dark transition-colors" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h1>
+                        <p class="text-xs text-subtle-light dark:text-subtle-dark">Blog Culinario Profesional</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-1">
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="px-4 py-2 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Buscar">
+                    <svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Cambiar tema">
+                    <svg id="theme-icon-light" class="h-5 w-5 text-text-light dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="hidden h-5 w-5 text-text-dark dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <button class="no-print md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" id="mobile-menu-button">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-background-dark" id="mobile-menu">
+            <div class="px-4 py-3 space-y-1">
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="block px-3 py-2 text-base font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <!-- Hero Section -->
+        <div class="mb-12 text-center">
+            <div class="mb-4">
+                <span class="inline-block px-4 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary font-semibold rounded-full text-sm">Estamos aquí para ayudarte</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4 text-text-light dark:text-text-dark">Contáctanos</h1>
+            <p class="text-lg text-subtle-light dark:text-subtle-dark max-w-3xl mx-auto">
+                ¿Tienes preguntas sobre recetas, sugerencias para el blog o quieres colaborar con nosotros? Estamos aquí para escucharte y ayudarte en lo que necesites.
+            </p>
+        </div>
+        
+        <!-- Contact Stats -->
+        <div class="mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2"><span id="response-time">24</span>h</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Tiempo de respuesta promedio</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">98%</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Satisfacción del cliente</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">500+</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Consultas mensuales</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">100%</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Respuestas personalizadas</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Contact Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Contact Form -->
+            <div class="lg:col-span-2">
+                <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-8">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark">Envíanos un mensaje</h2>
+                        <div class="hidden md:flex items-center gap-2 text-sm text-subtle-light dark:text-subtle-dark">
+                            <svg class="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Respuesta garantizada en 24 horas</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Message (hidden by default) -->
+                    <div id="success-message" class="success-message mb-6 p-4 bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 rounded-r-lg">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-green-700 dark:text-green-300">
+                                    <strong>¡Mensaje enviado con éxito!</strong> Te responderemos en un plazo máximo de 24 horas. Revisa tu bandeja de entrada (y spam) para nuestra respuesta.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+                                    Nombre completo <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" required
+                                    class="form-input w-full rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-background-dark px-4 py-3 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary"
+                                    placeholder="Tu nombre">
+                                <p class="mt-1 text-xs text-subtle-light dark:text-subtle-dark" id="name-error"></p>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+                                    Correo electrónico <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" required
+                                    class="form-input w-full rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-background-dark px-4 py-3 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary"
+                                    placeholder="tu@email.com">
+                                <p class="mt-1 text-xs text-subtle-light dark:text-subtle-dark" id="email-error"></p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+                                Asunto <span class="text-red-500">*</span>
+                            </label>
+                            <select id="subject" name="subject" required
+                                class="form-input w-full rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-background-dark px-4 py-3 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary">
+                                <option value="" disabled selected>Selecciona un tema</option>
+                                <option value="recipe-question">Pregunta sobre una receta</option>
+                                <option value="collaboration">Propuesta de colaboración</option>
+                                <option value="technical-issue">Problema técnico en el sitio</option>
+                                <option value="suggestion">Sugerencia para el blog</option>
+                                <option value="other">Otro tema</option>
+                            </select>
+                            <p class="mt-1 text-xs text-subtle-light dark:text-subtle-dark" id="subject-error"></p>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+                                Mensaje <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="message" name="message" rows="6" required
+                                class="form-input w-full rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-background-dark px-4 py-3 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary"
+                                placeholder="Describe tu consulta o sugerencia..."></textarea>
+                            <div class="mt-1 flex justify-between">
+                                <p class="text-xs text-subtle-light dark:text-subtle-dark" id="message-error"></p>
+                                <p class="text-xs text-subtle-light dark:text-subtle-dark">
+                                    <span id="char-count">0</span>/1000 caracteres
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" id="newsletter" name="newsletter"
+                                class="mt-1 h-4 w-4 rounded border-border-light dark:border-border-dark bg-transparent text-primary focus:ring-primary">
+                            <label for="newsletter" class="text-sm text-text-light dark:text-text-dark">
+                                Me gustaría suscribirme al boletín mensual para recibir nuevas recetas y consejos culinarios.
+                            </label>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <button type="submit" id="submit-btn"
+                                class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                <svg id="submit-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                                <span id="submit-text">Enviar mensaje</span>
+                            </button>
+                            <button type="reset"
+                                class="inline-flex items-center justify-center gap-2 border-2 border-primary text-primary hover:bg-primary/10 dark:hover:bg-primary/20 font-semibold py-3 px-8 rounded-lg transition-colors">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                Limpiar formulario
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="space-y-6">
+                <!-- Contact Cards -->
+                <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-6">
+                    <h2 class="text-2xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Información de contacto</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="contact-card">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-accent-light dark:bg-background-dark hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-text-light dark:text-text-dark mb-1">Ubicación</h3>
+                                    <p class="text-subtle-light dark:text-subtle-dark">Instituto Tecnológico de Tijuana</p>
+                                    <p class="text-subtle-light dark:text-subtle-dark text-sm">Calzada del Tecnológico, Tijuana, B.C.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-accent-light dark:bg-background-dark hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-text-light dark:text-text-dark mb-1">Correo electrónico</h3>
+                                    <a href="mailto:contacto@saboresdelmundo.com" class="text-primary hover:text-primary-dark transition-colors">contacto@saboresdelmundo.com</a>
+                                    <p class="text-subtle-light dark:text-subtle-dark text-sm mt-1">Respuesta en 24 horas</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-accent-light dark:bg-background-dark hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                                <div class="flex-shrink-0">
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                                        <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-text-light dark:text-text-dark mb-1">Teléfono</h3>
+                                    <a href="tel:+526641234567" class="text-primary hover:text-primary-dark transition-colors">+52 664 123 4567</a>
+                                    <p class="text-subtle-light dark:text-subtle-dark text-sm mt-1">Lunes a Viernes: 9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-6">
+                    <h2 class="text-2xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Síguenos en redes</h2>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#" class="group">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors">
+                                <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">Facebook</div>
+                                    <div class="text-xs text-subtle-light dark:text-subtle-dark">@saboresdelmundo</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="group">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-pink-50 dark:bg-pink-900/20 border border-pink-100 dark:border-pink-800 group-hover:bg-pink-100 dark:group-hover:bg-pink-900/30 transition-colors">
+                                <div class="h-10 w-10 rounded-full bg-pink-500 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 1.441c-3.119 0-3.482.012-4.694.067-2.45.113-3.593.755-4.225 1.855-.63 1.1-.968 2.366-1.079 4.225-.056 1.212-.067 1.575-.067 4.694s.011 3.482.067 4.694c.111 1.859.448 3.125 1.079 4.225.632 1.1 1.775 1.742 4.225 1.855 1.212.056 1.575.067 4.694.067s3.482-.011 4.694-.067c2.45-.113 3.594-.755 4.225-1.855.631-1.1.968-2.366 1.079-4.225.056-1.212.067-1.575.067-4.694s-.011-3.482-.067-4.694c-.111-1.859-.448-3.125-1.079-4.225-.632-1.1-1.775-1.742-4.225-1.855C15.482 3.614 15.119 3.603 12 3.603zM12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zm0 6.323a2.441 2.441 0 110-4.882 2.441 2.441 0 010 4.882zM17.55 6.275a.91.91 0 100 1.82.91.91 0 000-1.82z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">Instagram</div>
+                                    <div class="text-xs text-subtle-light dark:text-subtle-dark">@saboresdelmundo</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="group">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-blue-400/10 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 group-hover:bg-blue-400/20 dark:group-hover:bg-blue-900/30 transition-colors">
+                                <div class="h-10 w-10 rounded-full bg-blue-400 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">Twitter</div>
+                                    <div class="text-xs text-subtle-light dark:text-subtle-dark">@saboresmundo</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="group">
+                            <div class="flex items-center gap-3 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 group-hover:bg-red-100 dark:group-hover:bg-red-900/30 transition-colors">
+                                <div class="h-10 w-10 rounded-full bg-red-500 flex items-center justify-center">
+                                    <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">YouTube</div>
+                                    <div class="text-xs text-subtle-light dark:text-subtle-dark">Sabores del Mundo</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- FAQ Preview -->
+                <div class="bg-white dark:bg-accent-dark rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark p-6">
+                    <h2 class="text-2xl font-display font-bold mb-6 text-text-light dark:text-text-dark">Preguntas frecuentes</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="border-b border-border-light dark:border-border-dark pb-4">
+                            <h3 class="font-medium text-text-light dark:text-text-dark mb-1">¿Puedo usar sus recetas en mi restaurante?</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Sí, todas nuestras recetas son de uso libre con atribución. Contáctanos para uso comercial.</p>
+                        </div>
+                        
+                        <div class="border-b border-border-light dark:border-border-dark pb-4">
+                            <h3 class="font-medium text-text-light dark:text-text-dark mb-1">¿Ofrecen asesoría culinaria personalizada?</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Sí, ofrecemos consultoría para proyectos específicos. Envíanos los detalles de tu proyecto.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-medium text-text-light dark:text-text-dark mb-1">¿Cómo puedo colaborar con el blog?</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Nos encantan las colaboraciones. Envíanos tu propuesta a través del formulario de contacto.</p>
+                        </div>
+                    </div>
+                    
+                    <a href="blog.html" class="mt-4 inline-flex items-center text-primary hover:text-primary-dark font-medium text-sm">
+                        Ver más preguntas frecuentes
+                        <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="mb-16">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-2">Nuestra ubicación</h2>
+                    <p class="text-subtle-light dark:text-subtle-dark">Instituto Tecnológico de Tijuana - Centro de desarrollo de proyectos</p>
+                </div>
+                <a href="https://maps.google.com/?q=Instituto+Tecnológico+de+Tijuana" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-medium">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    Ver en Google Maps
+                </a>
+            </div>
+            
+            <div class="map-container h-80 md:h-96 bg-gray-200 dark:bg-gray-800 relative">
+                <!-- Map placeholder with overlay -->
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                <div class="map-overlay"></div>
+                
+                <!-- Map marker -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 floating-element">
+                    <div class="relative">
+                        <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center animate-pulse-slow">
+                            <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary"></div>
+                    </div>
+                </div>
+                
+                <!-- Location info box -->
+                <div class="absolute bottom-4 left-4 bg-white dark:bg-accent-dark p-4 rounded-lg shadow-medium dark:shadow-medium-dark max-w-xs">
+                    <h4 class="font-bold text-text-light dark:text-text-dark mb-1">Instituto Tecnológico de Tijuana</h4>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">Calzada del Tecnológico S/N, Tomas Aquino</p>
+                    <p class="text-sm text-subtle-light dark:text-subtle-dark">Tijuana, Baja California 22414</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Availability -->
+        <div class="mb-16">
+            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 rounded-2xl p-8 md:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-display font-bold mb-4 text-text-light dark:text-text-dark">Horarios de disponibilidad</h2>
+                        <p class="text-text-light dark:text-text-dark mb-6">
+                            Nuestro equipo está disponible para responder consultas durante los siguientes horarios. Para reuniones personalizadas, por favor agenda una cita con al menos 48 horas de anticipación.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-bold text-text-light dark:text-text-dark mb-3">Horario de contacto</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Lunes - Viernes</span>
+                                        <span class="font-medium text-primary">9:00 - 18:00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Sábados</span>
+                                        <span class="font-medium text-primary">10:00 - 14:00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Domingos</span>
+                                        <span class="font-medium text-primary">Cerrado</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-bold text-text-light dark:text-text-dark mb-3">Tiempos de respuesta</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Consultas generales</span>
+                                        <span class="font-medium text-primary">24 horas</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Colaboraciones</span>
+                                        <span class="font-medium text-primary">48 horas</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-text-light dark:text-text-dark">Problemas técnicos</span>
+                                        <span class="font-medium text-primary">12 horas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark">
+                        <h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-4">¿Necesitas una respuesta urgente?</h3>
+                        <p class="text-subtle-light dark:text-subtle-dark mb-4">Para consultas urgentes fuera del horario de atención, puedes contactarnos por:</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                                    <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">Teléfono de emergencia</div>
+                                    <a href="tel:+526641112233" class="text-primary hover:text-primary-dark">+52 664 111 2233</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                                    <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-text-light dark:text-text-dark">Email prioritario</div>
+                                    <a href="mailto:urgente@saboresdelmundo.com" class="text-primary hover:text-primary-dark">urgente@saboresdelmundo.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                            <p class="text-sm text-yellow-800 dark:text-yellow-300">
+                                <strong>Nota:</strong> El contacto urgente está reservado para consultas críticas relacionadas con problemas técnicos del sitio o colaboraciones con plazos inmediatos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Newsletter CTA -->
+        <div class="mb-16">
+            <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white text-center">
+                <h2 class="text-3xl font-display font-bold mb-4">Suscríbete a nuestro boletín</h2>
+                <p class="text-lg mb-6 max-w-2xl mx-auto">Recibe las últimas recetas, consejos culinarios y novedades del blog directamente en tu correo electrónico.</p>
+                
+                <form class="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
+                    <input type="email" placeholder="Tu correo electrónico"
+                        class="flex-1 rounded-lg border-0 px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary">
+                    <button type="submit"
+                        class="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors">
+                        Suscribirme
+                    </button>
+                </form>
+                
+                <p class="text-sm mt-4 text-white/80">Nosotros también odiamos el spam. Puedes cancelar tu suscripción en cualquier momento.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-accent-light dark:bg-accent-dark border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+                        <span class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
+                    </div>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-6">Tu destino para descubrir recetas auténticas de todo el mundo. Cocina con pasión y comparte momentos inolvidables.</p>
+                    <div class="flex items-center gap-4">
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 1.441c-3.119 0-3.482.012-4.694.067-2.45.113-3.593.755-4.225 1.855-.63 1.1-.968 2.366-1.079 4.225-.056 1.212-.067 1.575-.067 4.694s.011 3.482.067 4.694c.111 1.859.448 3.125 1.079 4.225.632 1.1 1.775 1.742 4.225 1.855 1.212.056 1.575.067 4.694.067s3.482-.011 4.694-.067c2.45-.113 3.594-.755 4.225-1.855.631-1.1.968-2.366 1.079-4.225.056-1.212.067-1.575.067-4.694s-.011-3.482-.067-4.694c-.111-1.859-.448-3.125-1.079-4.225-.632-1.1-1.775-1.742-4.225-1.855C15.482 3.614 15.119 3.603 12 3.603zM12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zm0 6.323a2.441 2.441 0 110-4.882 2.441 2.441 0 010 4.882zM17.55 6.275a.91.91 0 100 1.82.91.91 0 000-1.82z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Enlaces rápidos</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html">Recetas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Categorías</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Blog</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Recursos</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Consejos culinarios</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Técnicas de cocina</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Recetas por temporada</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Guía de ingredientes</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contacto.html">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Contacto</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li class="flex items-start gap-2">
+                            <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                            <a href="mailto:contacto@saboresdelmundo.com" class="hover:text-primary transition-colors">contacto@saboresdelmundo.com</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                            <a href="tel:+526641234567" class="hover:text-primary transition-colors">+52 664 123 4567</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Instituto Tecnológico de Tijuana, B.C.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-border-light dark:border-border-dark text-center text-sm text-subtle-light dark:text-subtle-dark">
+                <p>© 2024 Sabores del Mundo. Todos los derechos reservados. | Proyecto académico desarrollado por estudiantes del ITT.</p>
+                <p class="mt-2">
+                    <a href="politica-privacidad.html" class="hover:text-primary transition-colors">Política de privacidad</a> • 
+                    <a href="terminos-servicio.html" class="hover:text-primary transition-colors">Términos de servicio</a> • 
+                    <a href="mapa-sitio.html" class="hover:text-primary transition-colors">Mapa del sitio</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Toggle dark mode
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Form validation and submission
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitIcon = document.getElementById('submit-icon');
+        const submitText = document.getElementById('submit-text');
+        const charCount = document.getElementById('char-count');
+        const messageInput = document.getElementById('message');
+        
+        // Character counter for message
+        messageInput.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            if (length > 1000) {
+                this.value = this.value.substring(0, 1000);
+                charCount.textContent = 1000;
+                charCount.classList.add('text-red-500');
+            } else if (length > 800) {
+                charCount.classList.add('text-yellow-500');
+                charCount.classList.remove('text-red-500');
+            } else {
+                charCount.classList.remove('text-red-500', 'text-yellow-500');
+            }
+        });
+        
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            
+            // Reset errors
+            document.querySelectorAll('[id$="-error"]').forEach(el => el.textContent = '');
+            
+            // Validate name
+            if (!name.value.trim()) {
+                document.getElementById('name-error').textContent = 'El nombre es requerido';
+                name.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                name.classList.remove('border-red-500');
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                document.getElementById('email-error').textContent = 'El email es requerido';
+                email.classList.add('border-red-500');
+                isValid = false;
+            } else if (!emailRegex.test(email.value)) {
+                document.getElementById('email-error').textContent = 'Ingresa un email válido';
+                email.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                email.classList.remove('border-red-500');
+            }
+            
+            // Validate subject
+            if (!subject.value) {
+                document.getElementById('subject-error').textContent = 'Selecciona un asunto';
+                subject.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                subject.classList.remove('border-red-500');
+            }
+            
+            // Validate message
+            if (!message.value.trim()) {
+                document.getElementById('message-error').textContent = 'El mensaje es requerido';
+                message.classList.add('border-red-500');
+                isValid = false;
+            } else if (message.value.length > 1000) {
+                document.getElementById('message-error').textContent = 'El mensaje no puede exceder 1000 caracteres';
+                message.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                message.classList.remove('border-red-500');
+            }
+            
+            return isValid;
+        }
+        
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>`;
+            submitText.textContent = 'Enviando...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                contactForm.reset();
+                charCount.textContent = '0';
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>`;
+                submitText.textContent = 'Enviar mensaje';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+                
+                // Update response time stat
+                const responseTime = document.getElementById('response-time');
+                let time = parseInt(responseTime.textContent);
+                if (time > 1) {
+                    responseTime.textContent = time - 1;
+                }
+            }, 1500);
+        });
+        
+        // Form reset
+        contactForm.addEventListener('reset', function() {
+            document.querySelectorAll('[id$="-error"]').forEach(el => el.textContent = '');
+            document.querySelectorAll('.form-input').forEach(el => el.classList.remove('border-red-500'));
+            charCount.textContent = '0';
+            charCount.classList.remove('text-red-500', 'text-yellow-500');
+        });
+        
+        // Real-time validation
+        contactForm.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('blur', function() {
+                validateForm();
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.contact-card').forEach(el => observer.observe(el));
+        
+        // Add hover effect to contact cards
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.1)';
+                if (document.documentElement.classList.contains('dark')) {
+                    this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.35)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+        
+        // Update response time based on time of day
+        function updateResponseTime() {
+            const now = new Date();
+            const hour = now.getHours();
+            const responseTime = document.getElementById('response-time');
+            
+            // Business hours: 9 AM to 6 PM
+            if (hour >= 9 && hour < 18) {
+                responseTime.textContent = '24';
+            } else if (hour >= 18 && hour < 21) {
+                responseTime.textContent = '36';
+            } else {
+                responseTime.textContent = '48';
+            }
+        }
+        
+        updateResponseTime();
+        
+        // Update every hour
+        setInterval(updateResponseTime, 3600000);
+    </script>
 </body>
 </html>

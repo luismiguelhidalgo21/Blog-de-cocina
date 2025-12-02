@@ -1,158 +1,1078 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Categorías - Sabores del Mundo</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#ec7f13",
-            "background-light": "#f8f7f6",
-            "background-dark": "#221910",
-            "text-light": "#1a1a1a",
-            "text-dark": "#f0f0f0",
-            "subtle-light": "#a1a1aa",
-            "subtle-dark": "#71717a",
-            "border-light": "#e5e7eb",
-            "border-dark": "#374151"
-          },
-          fontFamily: {
-            "display": ["Work Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "1rem",
-            "xl": "1.5rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(248 247 246 / var(--tw-bg-opacity));
-    }
-    .dark body {
-        --tw-bg-opacity: 1;
-        background-color: rgb(34 25 16 / var(--tw-bg-opacity));
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Categorías de Recetas | Sabores del Mundo</title>
+    <meta name="description" content="Explora nuestras recetas organizadas por categorías culinarias. Encuentra platos por tipo, dificultad, tiempo de preparación y origen.">
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec7f13",
+                        "primary-dark": "#d36d08",
+                        "secondary": "#2a5c8b",
+                        "tertiary": "#2e7d32",
+                        "background-light": "#fefefe",
+                        "background-dark": "#1a140f",
+                        "text-light": "#2d3748",
+                        "text-dark": "#f8f9fa",
+                        "subtle-light": "#718096",
+                        "subtle-dark": "#a0aec0",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3748",
+                        "accent-light": "#f7fafc",
+                        "accent-dark": "#25221d"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px rgba(0, 0, 0, 0.05)',
+                        'soft-dark': '0 10px 30px rgba(0, 0, 0, 0.2)',
+                        'medium': '0 15px 40px rgba(0, 0, 0, 0.08)',
+                        'medium-dark': '0 15px 40px rgba(0, 0, 0, 0.25)',
+                        'hover': '0 20px 50px rgba(0, 0, 0, 0.1)',
+                        'hover-dark': '0 20px 50px rgba(0, 0, 0, 0.35)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'scale-up': 'scaleUp 0.2s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 254 254 / var(--tw-bg-opacity));
+        }
+        .dark body {
+            --tw-bg-opacity: 1;
+            background-color: rgb(26 20 15 / var(--tw-bg-opacity));
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .category-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .category-image {
+            transform: scale(1.05);
+        }
+        
+        .filter-btn.active {
+            background-color: #ec7f13;
+            color: white;
+        }
+        
+        .dark .filter-btn.active {
+            background-color: #ec7f13;
+            color: white;
+        }
+        
+        .category-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .category-card:hover .category-badge {
+            transform: scale(1.1);
+        }
+        
+        .grid-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #718096;
+        }
+    </style>
 </head>
-<body class="font-display text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
-<div class="group/design-root">
-<div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-20 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-<div class="flex items-center gap-4">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<h2 class="text-2xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary" href="index.html">Inicio</a>
-<a class="text-sm font-medium hover:text-primary" href="recetas.html">Recetas</a>
-<a class="text-sm font-medium text-primary" href="categorias.html">Categorías</a>
-<a class="text-sm font-medium hover:text-primary" href="blog.html">Blog</a>
-<a class="text-sm font-medium hover:text-primary" href="contacto.html">Contacto</a>
-</nav>
-<div class="flex items-center gap-2">
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-</button>
-<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-light dark:bg-background-dark/50 hover:bg-primary/10 dark:hover:bg-primary/20 shadow-sm transition-colors">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
-</button>
-</div>
-</div>
-</header>
-<main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-<div class="flex flex-col gap-8">
-<div class="flex flex-col gap-2 text-center">
-<h1 class="text-4xl font-bold text-text-light dark:text-text-dark">Categorías de Recetas</h1>
-<p class="mt-2 text-text-light dark:text-text-dark">Explora nuestras recetas organizadas por categorías</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Entradas y Aperitivos</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Deliciosos platos para comenzar cualquier comida</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Platos Principales</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Recetas sustanciosas para el plato fuerte</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Postres</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Dulces tentaciones para terminar la comida</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Pizzas y Pastas</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Sabores italianos para todos los gustos</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Carnes y Aves</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Recetas con carne para ocasiones especiales</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-<div class="rounded-lg bg-background-light dark:bg-background-dark/50 p-6 shadow-sm hover:shadow-md transition-shadow">
-<div class="h-40 w-full rounded-lg bg-cover bg-center mb-4" style='background-image: url("https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");'></div>
-<h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark">Vegetarianas</h3>
-<p class="text-subtle-light dark:text-subtle-dark mb-4">Platos saludables sin productos animales</p>
-<a class="text-primary font-medium hover:underline" href="recetas.html">Ver recetas</a>
-</div>
-</div>
-</div>
-</main>
-<footer class="mt-12 bg-background-light dark:bg-background-dark/50 py-8">
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-<div class="flex items-center gap-2">
-<svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
-<span class="text-lg font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
-</div>
-<div class="flex flex-wrap items-center justify-center gap-6 text-sm">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="index.html">Inicio</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="recetas.html">Recetas</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="categorias.html">Categorías</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="blog.html">Blog</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="contacto.html">Contacto</a>
-</div>
-<div class="flex items-center gap-4">
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm40,56a8,8,0,0,1,0,16H136v32h32a8,8,0,0,1,0,16H136v32a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h32V96H88a8,8,0,0,1,0-16h80Z"></path></svg>
-</a>
-<a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M216,32H40A16,16,0,0,0,24,48V208a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V48A16,16,0,0,0,216,32Zm0,176H40V48H216V208ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"></path></svg>
-</a>
-</div>
-</div>
-<div class="mt-8 text-center text-xs text-subtle-light dark:text-subtle-dark">
-<p>© 2024 Sabores del Mundo. Todos los derechos reservados.</p>
-</div>
-</div>
-</footer>
-</div>
-</div>
+<body class="font-sans text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark">
+    <!-- Header -->
+    <header class="sticky top-0 z-30 w-full bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <svg class="h-9 w-9 text-primary group-hover:text-primary-dark transition-colors" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+                    </svg>
+                    <div>
+                        <h1 class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</h1>
+                        <p class="text-xs text-subtle-light dark:text-subtle-dark">Blog Culinario Profesional</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-1">
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="px-4 py-2 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Buscar">
+                    <svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" title="Cambiar tema">
+                    <svg id="theme-icon-light" class="h-5 w-5 text-text-light dark:hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="hidden h-5 w-5 text-text-dark dark:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <button class="no-print md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 shadow-soft dark:shadow-soft-dark transition-all" id="mobile-menu-button">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-border-light dark:border-border-dark bg-white dark:bg-background-dark" id="mobile-menu">
+            <div class="px-4 py-3 space-y-1">
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="index.html">Inicio</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="recetas.html">Recetas</a>
+                <a class="block px-3 py-2 text-base font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg transition-colors" href="categorias.html">Categorías</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="blog.html">Blog</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="sobre-mi.html">Sobre mí</a>
+                <a class="block px-3 py-2 text-base font-medium text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary hover:bg-accent-light dark:hover:bg-accent-dark rounded-lg transition-colors" href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <!-- Page Header -->
+        <div class="mb-10 text-center">
+            <div class="mb-4">
+                <span class="inline-block px-4 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary font-semibold rounded-full text-sm">Explora por tipo</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4 text-text-light dark:text-text-dark">Categorías de Recetas</h1>
+            <p class="text-lg text-subtle-light dark:text-subtle-dark max-w-3xl mx-auto">Descubre más de 150 recetas organizadas por tipo de plato, dificultad, tiempo de preparación y origen culinario. Encuentra inspiración para cada ocasión.</p>
+        </div>
+        
+        <!-- Stats Section -->
+        <div class="mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">12</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Categorías</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">150+</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Recetas</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">25</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Países</div>
+                </div>
+                <div class="bg-white dark:bg-accent-dark p-6 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="text-3xl font-bold text-primary mb-2">4.7</div>
+                    <div class="text-sm text-subtle-light dark:text-subtle-dark">Calificación promedio</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="mb-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <h2 class="text-2xl font-display font-bold text-text-light dark:text-text-dark">Filtrar por</h2>
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn px-4 py-2 bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-text-light dark:text-text-dark rounded-lg transition-colors text-sm active" data-filter="all">
+                        Todas
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-text-light dark:text-text-dark rounded-lg transition-colors text-sm" data-filter="quick">
+                        <svg class="inline-block h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                        </svg>
+                        Rápidas
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-text-light dark:text-text-dark rounded-lg transition-colors text-sm" data-filter="easy">
+                        <svg class="inline-block h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Fáciles
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-text-light dark:text-text-dark rounded-lg transition-colors text-sm" data-filter="popular">
+                        <svg class="inline-block h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"></path>
+                        </svg>
+                        Populares
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-accent-light dark:bg-accent-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-text-light dark:text-text-dark rounded-lg transition-colors text-sm" data-filter="vegetarian">
+                        🌱 Vegetarianas
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="relative mb-8">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                    <svg class="h-5 w-5 text-neutral-500 dark:text-neutral-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                    </svg>
+                </div>
+                <input id="category-search" class="block w-full rounded-xl border-2 border-border-light dark:border-border-dark bg-white dark:bg-accent-dark py-3 pl-12 pr-4 text-text-light dark:text-text-dark placeholder:text-subtle-light dark:placeholder:text-subtle-dark focus:border-primary focus:ring-primary" placeholder="Buscar categorías..." type="search"/>
+            </div>
+        </div>
+        
+        <!-- Main Categories Grid -->
+        <div id="categories-grid" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Category 1 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="popular" data-tags="principales,popular">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary text-white shadow-md">
+                                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                    Popular
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Platos Principales</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Recetas sustanciosas para el plato fuerte de tus comidas. Desde carnes hasta pescados y opciones vegetarianas.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        42 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        30-90 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=principales" class="absolute inset-0 z-10" aria-label="Ver recetas de platos principales"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="easy" data-tags="entradas,rapido,facil">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-500 text-white shadow-md">
+                                    Fácil
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Entradas y Aperitivos</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Deliciosos platos para comenzar cualquier comida. Perfectos para reuniones, tapas y ocasiones especiales.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        28 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        10-30 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=entradas" class="absolute inset-0 z-10" aria-label="Ver recetas de entradas y aperitivos"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="popular" data-tags="postres,dulces">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-pink-500 text-white shadow-md">
+                                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                    Favorito
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Postres y Dulces</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Tentaciones dulces para terminar la comida con broche de oro. Tartas, pasteles, helados y mucho más.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        35 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        20-60 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=postres" class="absolute inset-0 z-10" aria-label="Ver recetas de postres y dulces"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="vegetarian" data-tags="vegetariano,saludable">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-tertiary text-white shadow-md">
+                                    🌱 Vegetariano
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Vegetarianas y Veganas</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Platos saludables y nutritivos sin productos animales. Llenos de sabor, color y beneficios para la salud.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        26 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        15-45 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=vegetarianas" class="absolute inset-0 z-10" aria-label="Ver recetas vegetarianas y veganas"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="quick" data-tags="rapido,facil,italiano">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-4 right-4">
+                                <span class="category-badge inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-500 text-white shadow-md">
+                                    Rápido
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Pizzas y Pastas</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Sabores italianos para todos los gustos. Desde clásicos hasta creaciones innovadoras con ingredientes frescos.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        18 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        20-40 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=pizzas-pastas" class="absolute inset-0 z-10" aria-label="Ver recetas de pizzas y pastas"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 6 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="popular" data-tags="carnes,principales">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Carnes y Aves</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Recetas con carne para ocasiones especiales. Técnicas de cocción, marinados y salsas que realzan el sabor.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        32 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        45-120 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=carnes" class="absolute inset-0 z-10" aria-label="Ver recetas de carnes y aves"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 7 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="quick" data-tags="sopas,rapido,facil">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Sopas y Cremas</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Reconfortantes y nutritivas, perfectas para cualquier época del año. Caldos, cremas y sopas internacionales.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        22 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        20-50 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=sopas" class="absolute inset-0 z-10" aria-label="Ver recetas de sopas y cremas"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 8 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="easy" data-tags="desayunos,rapido,facil">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Desayunos y Brunch</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Comienza el día con energía. Recetas dulces y saladas para disfrutar en las mañanas o en tardes relajadas.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        19 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        10-30 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=desayunos" class="absolute inset-0 z-10" aria-label="Ver recetas de desayunos y brunch"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 9 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="popular" data-tags="mariscos,pescados">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Pescados y Mariscos</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Sabores del mar en su máxima expresión. Técnicas para cocinar pescados y mariscos preservando su frescura.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        24 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        15-40 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=pescados" class="absolute inset-0 z-10" aria-label="Ver recetas de pescados y mariscos"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 10 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="quick" data-tags="ensaladas,rapido,saludable">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Ensaladas y Guarniciones</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Acompañamientos llenos de color y nutrición. Desde ensaladas frescas hasta guarniciones creativas.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        21 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        10-25 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=ensaladas" class="absolute inset-0 z-10" aria-label="Ver recetas de ensaladas y guarniciones"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 11 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="easy" data-tags="bebidas,rapido,facil">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Bebidas y Cócteles</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Refrescantes y creativas. Desde jugos naturales hasta cócteles sofisticados para cualquier ocasión.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        17 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        5-15 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=bebidas" class="absolute inset-0 z-10" aria-label="Ver recetas de bebidas y cócteles"></a>
+                    </div>
+                </div>
+                
+                <!-- Category 12 -->
+                <div class="grid-item category-card group animate-scale-up" data-category="popular" data-tags="panaderia,postres">
+                    <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-accent-dark shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <div class="category-image absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4">
+                                <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-2 group-hover:text-primary transition-colors">Panadería y Repostería</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">El arte de la masa madre, bollería y repostería fina. Técnicas tradicionales y recetas innovadoras.</p>
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        29 recetas
+                                    </div>
+                                    <div class="flex items-center text-subtle-light dark:text-subtle-dark">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        60-180 min
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="recetas.html?category=panaderia" class="absolute inset-0 z-10" aria-label="Ver recetas de panadería y repostería"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cuisines of the World Section -->
+        <div class="mb-16">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-2">Cocinas del Mundo</h2>
+                    <p class="text-subtle-light dark:text-subtle-dark">Descubre recetas auténticas de diferentes culturas culinarias</p>
+                </div>
+                <a href="recetas.html" class="text-primary font-semibold hover:text-primary-dark transition-colors flex items-center gap-2">
+                    Ver todas las cocinas
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="recetas.html?origin=espanola" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1559314809-2b99056a8c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Española</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">24 recetas</div>
+                    </div>
+                </a>
+                
+                <a href="recetas.html?origin=italiana" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Italiana</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">28 recetas</div>
+                    </div>
+                </a>
+                
+                <a href="recetas.html?origin=mexicana" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Mexicana</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">19 recetas</div>
+                    </div>
+                </a>
+                
+                <a href="recetas.html?origin=asiatica" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Asiática</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">22 recetas</div>
+                    </div>
+                </a>
+                
+                <a href="recetas.html?origin=mediterranea" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Mediterránea</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">31 recetas</div>
+                    </div>
+                </a>
+                
+                <a href="recetas.html?origin=americana" class="group">
+                    <div class="bg-white dark:bg-accent-dark p-4 rounded-xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center hover:shadow-hover dark:hover:shadow-hover-dark transition-all">
+                        <div class="h-12 w-12 rounded-full bg-cover bg-center mx-auto mb-3" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors">Americana</div>
+                        <div class="text-xs text-subtle-light dark:text-subtle-dark">17 recetas</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Difficulty Levels Section -->
+        <div class="mb-16">
+            <h2 class="text-3xl font-display font-bold text-text-light dark:text-text-dark mb-8 text-center">Niveles de Dificultad</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-accent-dark p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-6">
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-3">Fácil</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">Perfecto para principiantes. Recetas con pocos ingredientes y pasos sencillos.</p>
+                    <div class="text-2xl font-bold text-primary">68 recetas</div>
+                </div>
+                
+                <div class="bg-white dark:bg-accent-dark p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 mb-6">
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-3">Media</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">Para cocineros con experiencia. Técnicas intermedias y tiempos moderados.</p>
+                    <div class="text-2xl font-bold text-primary">52 recetas</div>
+                </div>
+                
+                <div class="bg-white dark:bg-accent-dark p-8 rounded-2xl shadow-soft dark:shadow-soft-dark border border-border-light dark:border-border-dark text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 mb-6">
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-text-light dark:text-text-dark mb-3">Difícil</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">Para chefs experimentados. Técnicas avanzadas y tiempos de preparación largos.</p>
+                    <div class="text-2xl font-bold text-primary">30 recetas</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-8 md:p-12 text-white text-center mb-16">
+            <h2 class="text-3xl font-display font-bold mb-4">¿No encuentras lo que buscas?</h2>
+            <p class="text-lg mb-6 max-w-2xl mx-auto">Usa nuestro buscador avanzado para encontrar recetas específicas por ingredientes, tiempo de preparación, calorías o tipo de dieta.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="recetas.html" class="inline-block bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors">
+                    Explorar todas las recetas
+                </a>
+                <a href="contacto.html" class="inline-block bg-transparent border-2 border-white hover:bg-white/10 font-semibold py-3 px-8 rounded-lg transition-colors">
+                    Sugerir una categoría
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-accent-light dark:bg-accent-dark border-t border-border-light dark:border-border-dark">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+                        <span class="text-xl font-bold text-text-light dark:text-text-dark">Sabores del Mundo</span>
+                    </div>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-6">Descubre recetas auténticas de todo el mundo. Cocina con pasión y comparte momentos inolvidables alrededor de la mesa.</p>
+                    <div class="flex items-center gap-4">
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 1.441c-3.119 0-3.482.012-4.694.067-2.45.113-3.593.755-4.225 1.855-.63 1.1-.968 2.366-1.079 4.225-.056 1.212-.067 1.575-.067 4.694s.011 3.482.067 4.694c.111 1.859.448 3.125 1.079 4.225.632 1.1 1.775 1.742 4.225 1.855 1.212.056 1.575.067 4.694.067s3.482-.011 4.694-.067c2.45-.113 3.594-.755 4.225-1.855.631-1.1.968-2.366 1.079-4.225.056-1.212.067-1.575.067-4.694s-.011-3.482-.067-4.694c-.111-1.859-.448-3.125-1.079-4.225-.632-1.1-1.775-1.742-4.225-1.855C15.482 3.614 15.119 3.603 12 3.603zM12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zm0 6.323a2.441 2.441 0 110-4.882 2.441 2.441 0 010 4.882zM17.55 6.275a.91.91 0 100 1.82.91.91 0 000-1.82z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Categorías</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html?category=principales">Platos Principales</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html?category=entradas">Entradas y Aperitivos</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html?category=postres">Postres y Dulces</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html?category=vegetarianas">Vegetarianas y Veganas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html?category=pizzas-pastas">Pizzas y Pastas</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Explorar</h3>
+                    <ul class="space-y-3 text-subtle-light dark:text-subtle-dark">
+                        <li><a class="hover:text-primary transition-colors" href="recetas.html">Todas las recetas</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="categorias.html">Categorías</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="blog.html">Blog de cocina</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="sobre-mi.html">Sobre mí</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-text-light dark:text-text-dark mb-4">Suscríbete</h3>
+                    <p class="text-subtle-light dark:text-subtle-dark mb-4">Recibe nuevas recetas y consejos directamente en tu correo.</p>
+                    <form class="flex gap-2">
+                        <input class="flex-1 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-background-dark px-4 py-2 text-text-light dark:text-text-dark focus:border-primary focus:ring-primary" placeholder="Tu email" type="email"/>
+                        <button class="rounded-lg bg-primary hover:bg-primary-dark px-4 py-2 font-medium text-white transition-colors" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-border-light dark:border-border-dark text-center text-sm text-subtle-light dark:text-subtle-dark">
+                <p>© 2024 Sabores del Mundo. Todos los derechos reservados. | Diseñado con pasión por amantes de la gastronomía.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Toggle dark mode
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const categoryCards = document.querySelectorAll('.grid-item');
+        const searchInput = document.getElementById('category-search');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Filter cards
+                categoryCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category.includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            categoryCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const tags = card.getAttribute('data-tags');
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm) || (tags && tags.includes(searchTerm))) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.animate-scale-up').forEach(el => observer.observe(el));
+        
+        // Add hover effect to category cards
+        categoryCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.1)';
+                if (document.documentElement.classList.contains('dark')) {
+                    this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.35)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
 </body>
 </html>
